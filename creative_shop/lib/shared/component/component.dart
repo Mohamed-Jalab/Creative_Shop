@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:project_api/shared/component/constant.dart';
+
+import 'constant.dart';
 
 Widget circles(
-        {Color color = GreyColor6,
+        {Color color = greyColor6,
         double width = 10,
         double height = 10,
-        child = null}) =>
+        child}) =>
     Padding(
       padding: const EdgeInsets.only(left: 20),
       child: Container(
@@ -21,7 +22,7 @@ Widget circles(
       ),
     );
 
-Widget MyRow({
+Widget myRow({
   String text1 = 'Hellow',
   String text2 = '',
   double fontsize = 20,
@@ -34,7 +35,7 @@ Widget MyRow({
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Text(
-            '${text1}',
+            text1,
             style: TextStyle(
                 textBaseline: TextBaseline.alphabetic,
                 overflow: TextOverflow.ellipsis,
@@ -42,32 +43,30 @@ Widget MyRow({
                 color: color),
             textAlign: TextAlign.right,
           ),
-          SizedBox(
-            width: 10,
-          ),
+          const SizedBox(width: 10),
           Text(
-            '${text2}',
+            text2,
             style: TextStyle(
                 textBaseline: TextBaseline.alphabetic,
                 overflow: TextOverflow.ellipsis,
                 fontSize: fontsize,
-                color: GreyColor2),
+                color: greyColor2),
             textAlign: TextAlign.right,
           ),
         ],
       ),
     );
 
-Widget MyButton(
+Widget myButton(
         {double width = 70,
         double height = 50,
-        child = null,
-        Color color = WhiteColor}) =>
+        child,
+        Color color = whiteColor}) =>
     Container(
       width: width,
       height: height,
       decoration: BoxDecoration(
-        border: Border.all(color: RedColor),
+        border: Border.all(color: redColor),
         color: color,
         borderRadius: BorderRadius.circular(10),
       ),
