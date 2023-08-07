@@ -1,6 +1,8 @@
+import 'package:creative_shop/screens/item_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'screens/splash_screen.dart';
+import 'sign_up.dart';
 
 void main() {
   runApp(const MyApp());

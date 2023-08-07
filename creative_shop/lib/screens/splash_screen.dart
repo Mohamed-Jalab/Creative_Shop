@@ -30,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Container(
               alignment: Alignment.center,
               child: Image.asset(
-                'asset/logo.png',
+                'asset/images/logo.png',
                 width: 270,
               )),
           const Text(
