@@ -74,8 +74,10 @@ Widget myButton(
         child: child,
       ),
     );
-Widget buildTextField({String text = ''}) {
+Widget buildTextField({String text = '', TextInputType? keyboardType}) {
   return TextFormField(
+    keyboardType: keyboardType,
+    cursorColor: redColor.withOpacity(.8),
     decoration: InputDecoration(
       contentPadding: const EdgeInsets.only(left: 20),
       hintText: text,
@@ -95,13 +97,16 @@ Widget buildTextField({String text = ''}) {
   );
 }
 
-Widget buildCheckbox(String text) {
+Widget buildCheckbox(String text, {bool value = true}) {
   return CheckboxListTile(
-    shape: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide.none),
+    activeColor: redColor,
+    shape: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8), borderSide: BorderSide.none),
     contentPadding: EdgeInsets.zero,
     controlAffinity: ListTileControlAffinity.leading,
     visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
-    value: true,
+    value: value,
+    // tristate: true,
     onChanged: (value) {},
     title: Text(
       text,
@@ -112,15 +117,17 @@ Widget buildCheckbox(String text) {
 }
 
 Widget buildBigButton(BuildContext context,
-    {required Widget child, Color? color, EdgeInsets? padding, double? height}) {
+    {required Widget child,
+    Color? color,
+    EdgeInsets? padding,
+    double? height,
+    required void Function() onPressed}) {
   return SizedBox(
     width: MediaQuery.of(context).size.width,
     child: MaterialButton(
-
-
       padding: padding,
       height: height,
-      textColor: Colors.white,
+      textColor: whiteColor,
       color: color,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
@@ -132,11 +139,11 @@ Widget buildBigButton(BuildContext context,
   );
 }
 
-Widget buildTextButton(String text) {
+Widget buildTextButton(String text, {required void Function() onPressed}) {
   return TextButton(
-    onPressed: () {},
+    onPressed: onPressed,
     style: TextButton.styleFrom(
-      foregroundColor: const Color(0xffe50010),
+      foregroundColor: redColor,
     ),
     child: Text(
       text,

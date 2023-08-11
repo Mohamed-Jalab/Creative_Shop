@@ -1,5 +1,8 @@
-import 'package:creative_shop/shared/component/component.dart';
+import 'package:creative_shop/screens/sign_up_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../shared/component/component.dart';
+import '../shared/component/constant.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -7,13 +10,13 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(kDefaultPadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 60),
+              const SizedBox(height: 50),
               const Text(
                 'Login',
                 style: TextStyle(
@@ -30,15 +33,19 @@ class LoginScreen extends StatelessWidget {
                     fontFamily: 'Poppins'),
               ),
               const SizedBox(height: 20),
-              buildTextField(
-                text: 'Username',
-              ),
-              const SizedBox(height: 10),
+              // buildTextField(
+              //   text: 'Username',
+              // ),
+              // const SizedBox(height: 10),
               buildTextField(
                 text: 'Email',
+                keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 10),
-              buildTextField(text: 'Password'),
+              buildTextField(
+                text: 'Password',
+                keyboardType: TextInputType.visiblePassword,
+              ),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -47,43 +54,77 @@ class LoginScreen extends StatelessWidget {
                     width: 150,
                     child: buildCheckbox("Remember me"),
                   ),
-                  buildTextButton('Forget Password'),
+                  // need to work on it future
+                  // buildTextButton('Forget Password'),
                 ],
               ),
-              // const SizedBox(height: 10),
+              const SizedBox(height: 5),
               buildBigButton(context,
+                  onPressed: () {},
                   height: 48,
                   child: const Text('Log In',
                       style: TextStyle(fontSize: 16, fontFamily: "Poppins")),
-                  color: const Color(0xffe50010)),
+                  color: redColor),
               // const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text("Don't have an account?",
                       style: TextStyle(fontFamily: 'Poppins')),
-                  buildTextButton('Sign Up'),
+                  buildTextButton('Sign Up', onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => const SignUpScreen()));
+                  }),
                 ],
               ),
-              const SizedBox(height: 40),
-              Center(
-                child: buildBigButton(
-                  context,
-                  height: 55,
-                  color: const Color(0xff404040),
-                  padding: const EdgeInsets.symmetric(horizontal: 21),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Image.asset("asset/images/google-logo.png",
-                          width: 28.81, height: 28),
-                      // Spacer(),
-                      const Text('Contuine with google',
-                          style: TextStyle(fontSize: 18, fontFamily: 'Poppins'))
-                    ],
+              const SizedBox(height: 50),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                      child: Divider(
+                    color: Colors.grey.withOpacity(.4),
+                    thickness: 2,
+                  )),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Text('Or Continue with',
+                        style: TextStyle(fontFamily: 'Poppins')),
                   ),
+                  Expanded(
+                      child: Divider(
+                    color: Colors.grey.withOpacity(.4),
+                    thickness: 2,
+                  )),
+                ],
+              ),
+              const SizedBox(height: 10),
+              Center(
+                child: IconButton(
+                  icon: Image.asset("asset/images/google-logo.png"),
+                  onPressed: () {},
                 ),
               ),
+              // Center(
+              //   child:
+              //   buildBigButton(
+              //     context,
+              //     onPressed: () {},
+              //     height: 55,
+              //     color: blackColor2,
+              //     padding: const EdgeInsets.symmetric(horizontal: 21),
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //       children: [
+              //         Image.asset("asset/images/google-logo.png",
+              //             width: 28.81, height: 28),
+              //         // Spacer(),
+              //         const Text('Contuine with google',
+              //             style: TextStyle(fontSize: 18, fontFamily: 'Poppins'))
+              //       ],
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),
