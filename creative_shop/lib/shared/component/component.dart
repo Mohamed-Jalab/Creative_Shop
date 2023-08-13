@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toast/toast.dart';
 
 import 'constant.dart';
 
@@ -74,11 +75,20 @@ Widget myButton(
         child: child,
       ),
     );
-Widget buildTextField({String text = '', TextInputType? keyboardType}) {
+Widget buildTextField({
+  String text = '',
+  TextInputType? keyboardType,
+  String? Function(String?)? validator,
+  Widget? suffix,
+  bool obscure = false,
+}) {
   return TextFormField(
+    obscureText: obscure,
+    validator: validator,
     keyboardType: keyboardType,
     cursorColor: redColor.withOpacity(.8),
     decoration: InputDecoration(
+      suffixIcon: suffix,
       contentPadding: const EdgeInsets.only(left: 20),
       hintText: text,
       hintStyle: const TextStyle(color: Colors.grey),
@@ -116,12 +126,14 @@ Widget buildCheckbox(String text, {bool value = true}) {
   );
 }
 
-Widget buildBigButton(BuildContext context,
-    {required Widget child,
-    Color? color,
-    EdgeInsets? padding,
-    double? height,
-    required void Function() onPressed}) {
+Widget buildBigButton(
+  BuildContext context, {
+  required Widget child,
+  Color? color,
+  EdgeInsets? padding,
+  double? height,
+  required void Function() onPressed,
+}) {
   return SizedBox(
     width: MediaQuery.of(context).size.width,
     child: MaterialButton(
@@ -133,7 +145,7 @@ Widget buildBigButton(BuildContext context,
         borderRadius: BorderRadius.circular(8),
         // side: const BorderSide(color: Color(0xffe50010)),
       ),
-      onPressed: () {},
+      onPressed: onPressed,
       child: child,
     ),
   );
@@ -151,4 +163,10 @@ Widget buildTextButton(String text, {required void Function() onPressed}) {
           const TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Poppins'),
     ),
   );
+}
+
+void message(BuildContext context, String msg, {bool longtime = true}) {
+  ToastContext toastContext = ToastContext();
+  toastContext.init(context);
+  Toast.show(msg, duration: longtime ? Toast.lengthLong : Toast.lengthShort);
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../shared/component/component.dart';
 import '../shared/component/constant.dart';
@@ -8,18 +9,19 @@ class ItemScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             Stack(
               children: [
-                const Image(
-                  image: NetworkImage(
+                Image(
+                  image: const NetworkImage(
                       'https://www.kenzacaftan.com/895-thickbox_default/yara-kaftan-mariee.jpg'),
-                  height: 450,
+                  height: 480.h,
                   width: double.infinity,
-                  fit: BoxFit.fitWidth,
+                  fit: BoxFit.cover,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10.0),
@@ -33,9 +35,7 @@ class ItemScreen extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-                      const SizedBox(
-                        width: 250,
-                      ),
+                      SizedBox(width: 240.w),
                       const Icon(
                         Icons.favorite_outline,
                         color: Colors.white,
@@ -50,14 +50,14 @@ class ItemScreen extends StatelessWidget {
                           circles(color: redColor),
                         ],
                       ),
-                      const SizedBox(
-                        width: 10,
+                      SizedBox(
+                        width: 10.w,
                       ),
                     ],
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 400),
+                  padding: EdgeInsets.only(top: 430.h),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -65,25 +65,21 @@ class ItemScreen extends StatelessWidget {
                       circles(color: redColor),
                       circles(),
                       circles(),
-                      const SizedBox(
-                        width: 230,
+                      SizedBox(
+                        width: 190.w,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 15),
-                        child: Container(
-                          alignment: AlignmentDirectional.bottomEnd,
-                          width: 35,
-                          height: 35,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: greyColor1,
-                          ),
-                          child: const Center(
-                            child: Icon(
-                              Icons.share_outlined,
-                              color: Colors.white,
-                            ),
-                          ),
+                      Container(
+                        padding: const EdgeInsets.only(right: 3),
+                        alignment: AlignmentDirectional.center,
+                        width: 35.w,
+                        height: 35.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: greyColor1,
+                        ),
+                        child: const Icon(
+                          Icons.share_outlined,
+                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -149,46 +145,88 @@ class ItemScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  myButton(
-                    child: const Icon(
-                      Icons.favorite,
-                      color: redColor,
-                      size: 30,
+                  SizedBox(
+                    width: 50.w,
+                    child: MaterialButton(
+                        padding: EdgeInsets.zero,
+                        shape: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(color: redColor, width: 1.3),
+                            borderRadius: BorderRadius.circular(8.0)),
+                        height: 50.h,
+                        onPressed: () {},
+                        child: const Icon(
+                          Icons.favorite,
+                          color: redColor,
+                        )
+                        // color: RedColor,
+                        ),
+                  ),
+                  SizedBox(
+                    width: 120.w,
+                    child: MaterialButton(
+                      height: 50.h,
+                      // color: redColor,
+                      shape: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: redColor, width: 1.3),
+                          borderRadius: BorderRadius.circular(8.0)),
+                      onPressed: () {},
+                      child: const Text(
+                        'Add to Bag',
+                        style: TextStyle(color: redColor),
+                      ),
+                      // color: RedColor,
                     ),
                   ),
-                  Row(
-                    children: [
-                      myButton(
-                        width: 150,
-                        height: 50,
-                        child: const Center(
-                          child: Text(
-                            'Add to Bag',
-                            style: TextStyle(fontSize: 20, color: redColor),
-                          ),
-                        ),
+                  SizedBox(
+                    width: 120.w,
+                    child: MaterialButton(
+                      height: 50.h,
+                      shape: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
-                      const SizedBox(
-                        width: 10,
+                      // borderRadius: BorderRadius.circular(10.0),
+                      color: redColor,
+                      onPressed: () {},
+                      child: const Text(
+                        'Buy Now',
+                        style: TextStyle(color: whiteColor),
                       ),
-                      myButton(
-                        width: 150,
-                        height: 50,
-                        color: redColor,
-                        child: const Center(
-                          child: Text(
-                            'Buy Now',
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: whiteColor,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                      // color: RedColor,
+                    ),
                   ),
+                  // MyButton(
+                  //   width: 120.w,
+                  //   height: 50,
+                  //   child: Center(
+                  //     child: Text(
+                  //       'Add to Bag',
+                  //       style: TextStyle(
+                  //           fontSize: 20, color: RedColor),
+                  //     ),
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   width: 10,
+                  // ),
+                  // MyButton(
+                  //   width: 120.w,
+                  //   height: 50.w,
+                  //   color: RedColor,
+                  //   child: Center(
+                  //     child: Text(
+                  //       'Buy Now',
+                  //       style: TextStyle(
+                  //         fontSize: 20,
+                  //         color: WhiteColor,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
