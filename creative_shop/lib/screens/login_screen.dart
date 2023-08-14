@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../cubits/login_screen/cubit.dart';
 import '../cubits/login_screen/states.dart';
+import '../models/login_model.dart';
 import '../shared/component/component.dart';
 import '../shared/component/constant.dart';
 import 'sign_up_screen.dart';
@@ -15,7 +16,13 @@ class LoginScreen extends StatelessWidget {
     return BlocProvider<LoginCubit>(
       create: (context) => LoginCubit(),
       child: BlocConsumer<LoginCubit, LoginStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is LoginErorrState) {
+            message(context, state.error);
+          } else if (state is LoginSuccessState) {
+            message(context, "Log In Successfully");
+          }
+        },
         builder: (context, state) {
           LoginCubit cubit = BlocProvider.of<LoginCubit>(context);
           return Scaffold(
@@ -46,11 +53,13 @@ class LoginScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           buildTextField(
+                            controller: cubit.emailController,
                             text: 'Email',
                             keyboardType: TextInputType.emailAddress,
                           ),
                           const SizedBox(height: 10),
                           buildTextField(
+                              controller: cubit.passwordController,
                               obscure: !cubit.visible,
                               text: 'Password',
                               keyboardType: TextInputType.visiblePassword,
@@ -72,13 +81,26 @@ class LoginScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     const SizedBox(height: 5),
-                    buildBigButton(context,
-                        onPressed: () {},
+                    buildBigButton(context, onPressed: () {
+                      if (cubit.emailController.text != '' &&
+                          cubit.passwordController.text != '') {
+                        LoginModel userModel = LoginModel(
+                          email: cubit.emailController.text,
+                          password: cubit.passwordController.text,
+                        );
+                        cubit.login(userModel);
+                      }
+                    },
                         height: 48,
                         child: const Text('Log In',
                             style:
                                 TextStyle(fontSize: 16, fontFamily: "Poppins")),
                         color: redColor),
+                    const SizedBox(height: 10),
+                    if (state is LoginLoadingState)
+                      LinearProgressIndicator(
+                          color: redColor,
+                          backgroundColor: redColor.withOpacity(.2)),
                     // const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -129,7 +151,6 @@ class LoginScreen extends StatelessWidget {
                         onTap: () {},
                       ),
                     ),
-                    
                   ],
                 ),
               ),

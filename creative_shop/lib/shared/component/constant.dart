@@ -16,5 +16,6 @@ const fontColor = Color(0xff141010);
 const subfontColor = Color(0xffd9d9d9);
 const containerColor = Color(0xffffffff);
 const activeColor = Color(0xffE50010);
+const kColorThemeBrowse = Color(0xff43da0d);
 
 const kDefaultPadding = 20.0;

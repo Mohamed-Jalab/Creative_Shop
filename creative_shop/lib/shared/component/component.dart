@@ -76,6 +76,7 @@ Widget myButton(
       ),
     );
 Widget buildTextField({
+  TextEditingController? controller,
   String text = '',
   TextInputType? keyboardType,
   String? Function(String?)? validator,
@@ -83,6 +84,7 @@ Widget buildTextField({
   bool obscure = false,
 }) {
   return TextFormField(
+    controller: controller,
     obscureText: obscure,
     validator: validator,
     keyboardType: keyboardType,

@@ -1,9 +1,11 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-import 'onboarding_screen.dart';
+import 'onBoardingScreen.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatefulWidget{
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
@@ -11,14 +13,14 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
   @override
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3)).then((value) => {
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (_) => const OnBoardingScreen()))
-        });
-  }
+     Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => OnBoardingScreen()))
+    });}
 
   @override
   Widget build(BuildContext context) {
@@ -41,17 +43,16 @@ class _SplashScreenState extends State<SplashScreen> {
               color: Color.fromARGB(232, 138, 46, 149),
             ),
           ),
-          const SizedBox(
-            height: 40,
-          ),
-          const SpinKitFadingCircle(
+      const  SizedBox(height: 40,),
+        const   SpinKitFadingCircle(
             color: Colors.black,
             size: 40,
           ),
+
         ],
       ),
     );
   }
 }
-// D:\creative_shop_project\Creative_Shop\creative_shop\asset\images
-// asset\images
+
+

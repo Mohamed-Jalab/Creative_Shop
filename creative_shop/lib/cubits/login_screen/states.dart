@@ -6,12 +6,14 @@ class LoginInitialState extends LoginStates {}
 
 class LoginVisiblePasswordState extends LoginStates {}
 
-class LoginSccessState extends LoginStates {
+class LoginLoadingState extends LoginStates {}
+
+class LoginSuccessState extends LoginStates {
   LoginModel model;
-  LoginSccessState(this.model);
+  LoginSuccessState(this.model);
 }
 
-class LoginFailedState extends LoginStates {
+class LoginErorrState extends LoginStates {
   String error;
-  LoginFailedState(this.error);
+  LoginErorrState(this.error);
 }
