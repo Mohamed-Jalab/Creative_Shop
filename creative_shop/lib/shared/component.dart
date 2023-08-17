@@ -3,78 +3,6 @@ import 'package:toast/toast.dart';
 
 import 'constant.dart';
 
-Widget circles(
-        {Color color = greyColor6,
-        double width = 10,
-        double height = 10,
-        child}) =>
-    Padding(
-      padding: const EdgeInsets.only(left: 20),
-      child: Container(
-        child: child,
-        width: width,
-        height: height,
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          // borderRadius: BorderRadius.circular(15),
-          color: color,
-        ),
-      ),
-    );
-
-Widget myRow({
-  String text1 = 'Hellow',
-  String text2 = '',
-  double fontsize = 20,
-  Color color = Colors.black,
-  EdgeInsets padd = const EdgeInsets.only(left: 10),
-}) =>
-    Padding(
-      padding: padd,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(
-            text1,
-            style: TextStyle(
-                textBaseline: TextBaseline.alphabetic,
-                overflow: TextOverflow.ellipsis,
-                fontSize: fontsize,
-                color: color),
-            textAlign: TextAlign.right,
-          ),
-          const SizedBox(width: 10),
-          Text(
-            text2,
-            style: TextStyle(
-                textBaseline: TextBaseline.alphabetic,
-                overflow: TextOverflow.ellipsis,
-                fontSize: fontsize,
-                color: greyColor2),
-            textAlign: TextAlign.right,
-          ),
-        ],
-      ),
-    );
-
-Widget myButton(
-        {double width = 70,
-        double height = 50,
-        child,
-        Color color = whiteColor}) =>
-    Container(
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-        border: Border.all(color: redColor),
-        color: color,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Center(
-        child: child,
-      ),
-    );
 Widget buildTextField({
   TextEditingController? controller,
   String text = '',
@@ -88,7 +16,7 @@ Widget buildTextField({
     obscureText: obscure,
     validator: validator,
     keyboardType: keyboardType,
-    cursorColor: redColor.withOpacity(.8),
+    cursorColor: secondaryColor.withOpacity(.8),
     decoration: InputDecoration(
       suffixIcon: suffix,
       contentPadding: const EdgeInsets.only(left: 20),
@@ -111,7 +39,7 @@ Widget buildTextField({
 
 Widget buildCheckbox(String text, {bool value = true}) {
   return CheckboxListTile(
-    activeColor: redColor,
+    activeColor: secondaryColor,
     shape: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8), borderSide: BorderSide.none),
     contentPadding: EdgeInsets.zero,
@@ -157,7 +85,7 @@ Widget buildTextButton(String text, {required void Function() onPressed}) {
   return TextButton(
     onPressed: onPressed,
     style: TextButton.styleFrom(
-      foregroundColor: redColor,
+      foregroundColor: secondaryColor,
     ),
     child: Text(
       text,
@@ -167,8 +95,27 @@ Widget buildTextButton(String text, {required void Function() onPressed}) {
   );
 }
 
-void message(BuildContext context, String msg, {bool longtime = true}) {
+void message(BuildContext context, String msg, {bool longTime = true}) {
   ToastContext toastContext = ToastContext();
   toastContext.init(context);
-  Toast.show(msg, duration: longtime ? Toast.lengthLong : Toast.lengthShort);
+  Toast.show(msg, duration: longTime ? Toast.lengthLong : Toast.lengthShort);
+}
+
+Widget pageViewScreen(BuildContext context,{required String image}) {
+  return Container(
+    width: MediaQuery.of(context).size.width,
+    height: MediaQuery.of(context).size .height,
+    decoration:  BoxDecoration(
+      gradient: LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          primaryColor,
+          Colors.red,
+          primaryColor.withOpacity(0),
+        ],
+      ),
+    ),
+    child: Image.asset('asset/images/$image',fit: BoxFit.cover),
+  );
 }

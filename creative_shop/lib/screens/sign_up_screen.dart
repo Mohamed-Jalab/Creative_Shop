@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../cubits/sign_up_scren/cubit.dart';
 import '../cubits/sign_up_scren/states.dart';
 import '../models/sign_up_model.dart';
-import '../shared/component/component.dart';
-import '../shared/component/constant.dart';
+import '../shared/component.dart';
+import '../shared/constant.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -102,12 +102,12 @@ class SignUpScreen extends StatelessWidget {
                         child: const Text('Sign Up',
                             style:
                                 TextStyle(fontSize: 16, fontFamily: "Poppins")),
-                        color: redColor),
+                        color: secondaryColor),
                     const SizedBox(height: 10),
                     if (state is SignUpLoadingState)
                       LinearProgressIndicator(
-                        color: redColor,
-                        backgroundColor: redColor.withOpacity(.2),
+                        color: secondaryColor,
+                        backgroundColor: secondaryColor.withOpacity(.2),
                       ),
                     const SizedBox(height: 30),
                     RichText(
@@ -123,7 +123,7 @@ class SignUpScreen extends StatelessWidget {
                           ),
                           TextSpan(
                             text: "Terms & Conditions ",
-                            style: TextStyle(color: redColor),
+                            style: TextStyle(color: secondaryColor),
                           ),
                           TextSpan(
                             text: "and ",
@@ -131,7 +131,7 @@ class SignUpScreen extends StatelessWidget {
                           ),
                           TextSpan(
                             text: "Privacy Policy",
-                            style: TextStyle(color: redColor),
+                            style: TextStyle(color: secondaryColor),
                           ),
                         ],
                       ),

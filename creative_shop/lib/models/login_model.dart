@@ -5,10 +5,10 @@ class LoginModel {
     required this.email,
     required this.password,
   });
-  factory LoginModel.fromJson(Map<String, String> json) {
+  factory LoginModel.fromJson(Map<String, dynamic> json) {
     return LoginModel(
-      email: json['email']!,
-      password: json['password']!,
+      email: json['email'],
+      password: json['password'],
     );
   }
   Map<String, String> toJson() {

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,29 +13,27 @@ class SignUpCubit extends Cubit<SignUpStates> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
-  
-
-bool visible = false;
+  bool visible = false;
   void changeVisiblePassword() {
     visible = !visible;
     emit(SignUpVisiblePasswordState());
   }
+
   void signUp(SignUpModel model) async {
     try {
       emit(SignUpLoadingState());
-      UserCredential user = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-              email: model.email, password: model.password);
+      FirebaseAuth user = FirebaseAuth.instance;
+      await user.createUserWithEmailAndPassword(
+          email: model.email, password: model.password);
       emit(SignUpSccessState());
     } on FirebaseAuthException catch (e) {
       if (e.code == "weak-password") {
         emit(SignUpErorrState("Your password is weak"));
       } else if (e.code == "email-already-in-use") {
-        emit(SignUpErorrState("Your password is weak"));
-        print('The account already exists for that email.');
+        emit(SignUpErorrState("The account already exists for that email."));
       }
     } catch (e) {
-      print(e);
+      emit(SignUpErorrState(e.toString()));
     }
   }
 }

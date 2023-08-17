@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../cubits/login_screen/cubit.dart';
 import '../cubits/login_screen/states.dart';
 import '../models/login_model.dart';
-import '../shared/component/component.dart';
-import '../shared/component/constant.dart';
+import '../shared/component.dart';
+import '../shared/constant.dart';
 import 'sign_up_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -81,7 +81,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     const SizedBox(height: 5),
-                    buildBigButton(context, onPressed: () {
+                    buildBigButton(context, onPressed: () async {
                       if (cubit.emailController.text != '' &&
                           cubit.passwordController.text != '') {
                         LoginModel userModel = LoginModel(
@@ -95,12 +95,12 @@ class LoginScreen extends StatelessWidget {
                         child: const Text('Log In',
                             style:
                                 TextStyle(fontSize: 16, fontFamily: "Poppins")),
-                        color: redColor),
+                        color: secondaryColor),
                     const SizedBox(height: 10),
                     if (state is LoginLoadingState)
                       LinearProgressIndicator(
-                          color: redColor,
-                          backgroundColor: redColor.withOpacity(.2)),
+                          color: secondaryColor,
+                          backgroundColor: secondaryColor.withOpacity(.2)),
                     // const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

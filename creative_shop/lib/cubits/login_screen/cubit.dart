@@ -1,10 +1,16 @@
+// ignore_for_file: avoid_print, unused_local_variable
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../models/login_model.dart';
+import '../../models/sign_up_model.dart';
 import 'states.dart';
+
+import 'dart:convert';
 
 class LoginCubit extends Cubit<LoginStates> {
   LoginCubit() : super(LoginInitialState());
@@ -24,6 +30,21 @@ class LoginCubit extends Cubit<LoginStates> {
         email: model.email,
         password: model.password,
       );
+      CollectionReference useref =
+          FirebaseFirestore.instance.collection('users');
+      QuerySnapshot data = await useref.get();
+      List<QueryDocumentSnapshot> dataList = data.docs;
+      for (var element in dataList) {
+        String  data = jsonEncode(element.data());
+        var jsondata = jsonDecode(data);
+        // --------------------------------------------------
+        // print(data);
+
+        SignUpModel test = SignUpModel.fromJson(jsondata);
+        if (test.email == model.email) {
+          print(test.username);
+        }
+      }
       emit(LoginSuccessState(model));
     } on FirebaseAuthException catch (erorr) {
       if (erorr.code == "user-not-found") {
@@ -34,5 +55,10 @@ class LoginCubit extends Cubit<LoginStates> {
     } catch (e) {
       emit(LoginErorrState("Unknown erorr."));
     }
+
+    // if ( == model.email) {
+
+    //   print(element.data());
+    // }
   }
 }
