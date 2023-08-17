@@ -1,22 +1,10 @@
-class OnBoardingModel {
-  final String? title;
-  final String? title2;
-  final String? image;
-  OnBoardingModel(this.title, this.title2, this.image);
-}
-
-
-List<OnBoardingModel> onBoardingList = [
-  OnBoardingModel(
-      "Join our community of\n            creators!",
-      " 20.000+indian Craftsmen one click away!\n connect to the community of Artisans & \n                    Designers Directly",
-      "asset/images/1.jpg"),
-  OnBoardingModel(
-      " Buy from the people \n        not Brands",
-      " Discover the stories of unique crafts and buy\n              from the makers themeselves!",
-      "asset/images/2.jpg"),
-  OnBoardingModel(
-      " Callaborate &\n    Co-Create",
-      "Bring your creative vision to life with their \n             exceptional craftsmanship",
-      "asset/images/3.jpg"),
+List<String> titles = [
+  'Join our community of\ncreators!',
+  'Buy from the people\nnot Brands',
+  'Collaborate &\nCo-Create!',
+];
+List<String> subtitles = [
+  '20.000+ Arabian Craftsmen one click away!\nConnect to the community of Artisans &\n Designers Directly.',
+  'Discover the stories of unique crafts and buy\nfromthe makers themeselves!',
+  'Bring your creative vision to life with their\nexceptional craftsmanship!',
 ];

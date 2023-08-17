@@ -101,21 +101,72 @@ void message(BuildContext context, String msg, {bool longTime = true}) {
   Toast.show(msg, duration: longTime ? Toast.lengthLong : Toast.lengthShort);
 }
 
-Widget pageViewScreen(BuildContext context,{required String image}) {
-  return Container(
-    width: MediaQuery.of(context).size.width,
-    height: MediaQuery.of(context).size .height,
-    decoration:  BoxDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [
-          primaryColor,
-          Colors.red,
-          primaryColor.withOpacity(0),
-        ],
+// Widget pageViewScreen(
+//   BuildContext context,
+// ) {
+//   return Stack(
+//     children: [
+//       PageView.builder(
+//         itemBuilder: (context, index) {
+//           return SizedBox(
+//             child: pageWithGradient(context, image: "${index + 1}.jpg"),
+//           );
+//         },
+//         itemCount: 3,
+//       ),
+//     ],
+//   );
+// }
+
+Widget pageWithGradient(
+  BuildContext context, {
+  required String image,
+  required String title,
+  required String subtitle,
+}) {
+  return Stack(
+    alignment: Alignment.topCenter,
+    children: [
+      Image.asset(
+        'asset/images/$image',
+        fit: BoxFit.cover,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
       ),
-    ),
-    child: Image.asset('asset/images/$image',fit: BoxFit.cover),
+      Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              primaryColor.withOpacity(.9),
+              primaryColor.withOpacity(0),
+            ],
+          ),
+        ),
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+      ),
+      Positioned(
+        top: 100,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            children: [
+               Text(title,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: whiteColor, fontSize: 28)),
+              const SizedBox(height: 10),
+              Text(
+                subtitle,
+                style: TextStyle(color: whiteColor.withOpacity(.7)),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      )
+    ],
   );
 }
+// 'Join out community of\n creators!'
