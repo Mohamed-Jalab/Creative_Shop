@@ -13,6 +13,9 @@ class OnboardingCubit extends Cubit<OnboardingStates> {
     if (index == 2) {
       isLast = true;
       emit(OnboardingLastPageState());
+    } else {
+      isLast = false;
+      emit(OnboardingLastPageState());
     }
   }
 }

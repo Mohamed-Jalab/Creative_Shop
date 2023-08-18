@@ -75,7 +75,7 @@ class OnboardingScreen extends StatelessWidget {
                       if (!cubit.isLast) {
                         cubit.controller.nextPage(
                             duration: const Duration(milliseconds: 600),
-                            curve: Curves.easeOutSine);
+                            curve: Curves.linearToEaseOut);
                       } else {
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(

@@ -153,9 +153,9 @@ Widget pageWithGradient(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
             children: [
-               Text(title,
+              Text(title,
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: whiteColor, fontSize: 28)),
+                  style: const TextStyle(color: whiteColor, fontSize: 28)),
               const SizedBox(height: 10),
               Text(
                 subtitle,
