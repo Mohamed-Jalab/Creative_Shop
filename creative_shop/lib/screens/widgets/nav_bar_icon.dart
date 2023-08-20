@@ -8,21 +8,19 @@ class NavBarIcon extends StatelessWidget {
     this.isSelected = false,
     this.title = '',
     required this.icon,
-    this.onTap,
+    required this.onTap,
   });
 
   final bool isSelected;
   final IconData icon;
   final String title;
-  final Function? onTap;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
     if (!isSelected) {
       return GestureDetector(
-          onTap: () {
-            print('bottom nav bar');
-          },
+          onTap: onTap,
           child: Icon(icon, color: Colors.black38));
     }
     return Container(

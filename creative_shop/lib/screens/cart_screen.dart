@@ -10,10 +10,17 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   toolbarHeight: 120,
-      //   elevation: 0,
-      // ),
+      appBar: AppBar(
+        backgroundColor: primaryColor,
+        centerTitle: true,
+        title: const Text('Your Cart'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.delete_outline),
+            onPressed: () {},
+          ),
+        ],
+      ),
       backgroundColor: greyColor3,
       body: SizedBox(
         height: MediaQuery.of(context).size.height,

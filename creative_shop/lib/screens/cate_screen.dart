@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:intrinsic_grid_view/intrinsic_grid_view.dart';
 
 import '../shared/constant.dart';
-import 'new/the_absolute_bottom_bar.dart';
-import 'new/item_card.dart';
+import 'widgets/the_absolute_bottom_bar.dart';
+import 'widgets/item_card.dart';
 
 class CateScreen extends StatelessWidget {
   final itemCards = [

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../models/categroy_model.dart';
 import '../shared/component.dart';
-import 'new/the_absolute_bottom_bar.dart';
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({Key? key}) : super(key: key);
@@ -10,9 +9,6 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: TheAbsoluteBottomBar(
-        selectedInd: 0,
-      ),
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(35, 47, 62, 1),
         title: const Text(
