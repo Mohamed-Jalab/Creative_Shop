@@ -10,31 +10,35 @@ class CategoryModel {
 
 List<CategoryModel> model = [
   CategoryModel(
-    '4.jpg',
-    "  product 1 ",
+    'accessories/1.jpg',
+    "Accessories",
   ),
   CategoryModel(
-    '5.jpg',
-    " product 2 ",
+    'candles/1.jpg',
+    "Candles",
   ),
   CategoryModel(
-    '6.jpg',
-    " product 3 ",
+    'collages/3.jpg',
+    "Collages",
   ),
   CategoryModel(
-    '4.jpg',
-    " product 4 ",
+    'embroidery/1.jpg',
+    "Embroideries",
   ),
   CategoryModel(
-    '5.jpg',
-    " product 5 ",
+    'flowers/4.jpg',
+    "Flowers",
   ),
   CategoryModel(
-    '6.jpg',
-    " product 6  ",
+    'gifts/2.jpg',
+    "Gifts",
   ),
   CategoryModel(
-    '4.jpg',
-    " product 6  ",
+    'papers/4.jpg',
+    "Papers",
+  ),
+  CategoryModel(
+    'raizens/1.jpg',
+    "Raizens",
   ),
 ];

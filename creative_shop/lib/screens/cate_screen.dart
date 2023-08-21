@@ -1,48 +1,64 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:creative_shop/screens/product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intrinsic_grid_view/intrinsic_grid_view.dart';
 
 import '../shared/constant.dart';
-import 'widgets/the_absolute_bottom_bar.dart';
 import 'widgets/item_card.dart';
 
 class CateScreen extends StatelessWidget {
-  final itemCards = [
-    ItemCard(
-        image: Image(
-          image: AssetImage('asset/images/pants2.jpeg'),
-        ),
+  final String title;
+  final List<ItemCard> list;
+  const CateScreen({
+    super.key,
+    this.title = 'Creative Shop',
+    required this.list,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    for (int i = 0; i < list.length; i++) {
+      list[i].onTap = () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => ProductScreen(
+                imageUrl: list[i].image,
+                category: list[i].category,
+                title: list[i].title),
+          ),
+        );
+      };
+    }
+    final itemCards = [
+      ItemCard(
+          onTap: () {
+            // Navigator.of(context)
+            //     .push(MaterialPageRoute(builder: (_) => ProductScreen()));
+          },
+          image: 'asset/images/pants2.jpeg',
+          title: 'Lorem ipsum',
+          newPrice: '99\$',
+          category: 'category',
+          saleText: '-87%',
+          oldPrice: '60\$',
+          isFavorite: true),
+      ItemCard(
+        onTap: () {},
+        image: 'asset/images/pant.jpg',
         title: 'Lorem ipsum',
         newPrice: '99\$',
         category: 'category',
         saleText: '-87%',
-        oldPrice: '60\$',
-        isFavorite: true),
-    ItemCard(
-      image: Image(
-        image: AssetImage('asset/images/pant.jpg'),
       ),
-      title: 'Lorem ipsum',
-      newPrice: '99\$',
-      category: 'category',
-      saleText: '-87%',
-    ),
-    ItemCard(
-        image: Image(
-          image: AssetImage('asset/images/pant.jpg'),
-        ),
-        title: 'Lorem ipsum',
-        newPrice: '99\$',
-        category: 'category',
-        isFavorite: true),
-  ];
-  final String title;
-
-  CateScreen({super.key, this.title = 'Creative Shop'});
-
-  @override
-  Widget build(BuildContext context) {
+      ItemCard(
+          onTap: () {},
+          image: 'asset/images/pant.jpg',
+          title: 'Lorem ipsum',
+          newPrice: '99\$',
+          category: 'category',
+          isFavorite: true),
+    ];
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -65,18 +81,18 @@ class CateScreen extends StatelessWidget {
                             verticalSpace: 4,
                             padding: EdgeInsets.only(
                                 top: 16, bottom: 12, left: 4, right: 4),
-                            children: List.generate(itemCards.length, (index) {
+                            children: List.generate(list.length, (index) {
                               return ItemCard(
-                                image: itemCards[index].image,
-                                title: itemCards[index].title,
-                                newPrice: itemCards[index].newPrice,
-                                category: itemCards[index].category,
-                                isFavorite: itemCards[index].isFavorite,
-                                saleText: itemCards[index].saleText,
-                                oldPrice: itemCards[index].oldPrice,
+                                image: list[index].image,
+                                title: list[index].title,
+                                newPrice: list[index].newPrice,
+                                category: list[index].category,
+                                isFavorite: list[index].isFavorite,
+                                saleText: list[index].saleText,
+                                oldPrice: list[index].oldPrice,
                                 backgroundColor:
-                                    itemCards[index].backgroundColor,
-                                onTap: itemCards[index].onTap,
+                                    list[index].backgroundColor,
+                                onTap: list[index].onTap,
                               );
                             }),
                           )
@@ -109,7 +125,7 @@ class CateScreen extends StatelessWidget {
                                     Navigator.pop(context);
                                   },
                                   child: Icon(
-                                    Icons.arrow_back_outlined,
+                                    Icons.arrow_back_ios_new_rounded,
                                     color: Colors.white,
                                   ),
                                 ),

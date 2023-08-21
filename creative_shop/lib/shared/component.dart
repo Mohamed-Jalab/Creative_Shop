@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
 
 import '../models/categroy_model.dart';
+import '../screens/widgets/item_card.dart';
 import 'constant.dart';
 
 Widget buildTextField({
@@ -489,12 +490,16 @@ Widget nameItem({Color? shadowColor, Color? nameColor, String? name}) =>
       ),
     );
 
-Widget grid(BuildContext context,CategoryModel model) {
+Widget grid(BuildContext context, CategoryModel model, List<ItemCard> list) {
   return Column(
     children: [
       InkWell(
           onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (_)=> CateScreen(title: model.name)));
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) => CateScreen(
+                      title: model.name,
+                      list: list,
+                    )));
           },
           child: Container(
             width: 160,
@@ -521,9 +526,29 @@ Widget grid(BuildContext context,CategoryModel model) {
         height: 2,
       ),
       Text(
-        '${model.name}',
+        model.name,
         style: const TextStyle(fontSize: 17),
       ),
     ],
   );
+}
+
+List<ItemCard> listOfCards(int index) {
+  if (index == 0) {
+    return accessoriesCards;
+  } else if (index == 1) {
+    return candlesCards;
+  } else if (index == 2) {
+    return collagesCards;
+  } else if (index == 3) {
+    return embroideryCards;
+  } else if (index == 4) {
+    return flowersCards;
+  } else if (index == 5) {
+    return giftsCards;
+  } else if (index == 6) {
+    return paperCards;
+  } else {
+    return raizenCards;
+  }
 }

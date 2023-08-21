@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 class ItemCard extends StatelessWidget {
-  const ItemCard({
+  ItemCard({
     super.key,
     required this.image,
     required this.title,
@@ -13,26 +13,23 @@ class ItemCard extends StatelessWidget {
     this.isFavorite = false,
     this.saleText = '',
     this.oldPrice = '',
-    this.onTap,
+    required this.onTap,
   });
 
   final Color backgroundColor;
-  final Image image;
+  final String image;
   final bool isFavorite;
   final String saleText;
   final String title;
   final String category;
   final String oldPrice;
   final String newPrice;
-  final Function? onTap;
+  void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        print('to other page ...');
-        if (onTap != null) onTap!();
-      },
+      onTap: onTap,
       child: SizedBox(
         height: 300,
         child: Card(
@@ -68,7 +65,7 @@ class ItemCard extends StatelessWidget {
                                   const BorderSide(color: Colors.transparent)),
                           child: FittedBox(
                             fit: BoxFit.cover,
-                            child: image,
+                            child: Image.asset(image),
                           ),
                         ),
                       ),

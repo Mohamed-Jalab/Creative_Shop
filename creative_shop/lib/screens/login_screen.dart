@@ -1,4 +1,3 @@
-import 'package:creative_shop/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,6 +6,7 @@ import '../cubits/login_screen/states.dart';
 import '../models/login_model.dart';
 import '../shared/component.dart';
 import '../shared/constant.dart';
+import 'home.dart';
 import 'sign_up_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget {
             message(context, "Log In Successfully");
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => HomeScreen(),
+                builder: (context) => const Home(),
               ),
             );
           }
@@ -74,8 +74,8 @@ class LoginScreen extends StatelessWidget {
                                 child: IconButton(
                                   icon: Icon(
                                     !cubit.visible
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
+                                        ? Icons.visibility_off
+                                        : Icons.visibility,
                                     color: greyColor2,
                                   ),
                                   onPressed: () =>

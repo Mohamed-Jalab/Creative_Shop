@@ -13,15 +13,12 @@ class AboutUsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: primaryColor,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_outlined),
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
-          'About Us',
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-        ),
+        title: const Text('About Us'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -76,7 +73,7 @@ class AboutUsScreen extends StatelessWidget {
                       nameItem(
                           shadowColor: primaryColor,
                           nameColor: secondaryColor,
-                          name: 'Ahmad Albitar'),
+                          name: 'Ahmad Albetar'),
                     ],
                   ),
                   const SizedBox(

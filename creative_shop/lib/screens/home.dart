@@ -28,17 +28,13 @@ class _HomeState extends State<Home> {
       NavBarIcon(
         onTap: () {
           if (selectedInd != 1) {
-            // Navigator.of(context).pushReplacement(
-            //     MaterialPageRoute(builder: (_) => HomeScreen()));
             setState(() {
               selectedInd = 1;
             });
-            print('if Home');
           }
-          print('Home');
         },
-        icon: Icons.home_outlined,
         isSelected: selectedInd == 1,
+        icon: selectedInd == 1 ? Icons.home :Icons.home_outlined,
         title: 'Home',
       ),
       NavBarIcon(
@@ -49,12 +45,10 @@ class _HomeState extends State<Home> {
             setState(() {
               selectedInd = 2;
             });
-            print('if Favorit');
           }
-          print('Favorit');
         },
         isSelected:selectedInd == 2,
-        icon: Icons.favorite_outline_rounded,
+        icon:selectedInd == 2?Icons.favorite_rounded : Icons.favorite_outline_rounded,
         title: 'Favorite',
       ),
       NavBarIcon(
@@ -65,28 +59,22 @@ class _HomeState extends State<Home> {
             setState(() {
               selectedInd = 3;
             });
-            print('if My Cart');
           }
-          print('My Cart');
         },
         isSelected: selectedInd == 3,
-        icon: Icons.shopping_cart_outlined,
+        icon:selectedInd == 3? Icons.shopping_cart :Icons.shopping_cart_outlined,
         title: 'My Cart',
       ),
       NavBarIcon(
         onTap: () {
           if (selectedInd != 4) {
-            // Navigator.of(context).pushReplacement(
-            //     MaterialPageRoute(builder: (_) => const ProfileScreen()));
             setState(() {
               selectedInd = 4;
             });
-            print('if Profile');
           }
-          print('Profile');
         },
         isSelected: selectedInd == 4,
-        icon: Icons.person_outline_rounded,
+        icon:selectedInd==4?Icons.person_rounded: Icons.person_outline_rounded,
         title: 'Profile',
       ),
     ];
@@ -96,7 +84,7 @@ class _HomeState extends State<Home> {
       elevation: 8,
       color: Colors.white,
       child: SizedBox(
-        height: 72,
+        height: 55,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -66,8 +66,8 @@ class SignUpScreen extends StatelessWidget {
                         child: IconButton(
                           icon: Icon(
                             !cubit.visible
-                                ? Icons.visibility
-                                : Icons.visibility_off,
+                                ? Icons.visibility_off
+                                : Icons.visibility,
                             color: greyColor2,
                           ),
                           onPressed: () => cubit.changeVisiblePassword(),

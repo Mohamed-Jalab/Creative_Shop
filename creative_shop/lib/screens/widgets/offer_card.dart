@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class OffersCard extends StatelessWidget {
   const OffersCard({
@@ -29,7 +28,7 @@ class OffersCard extends StatelessWidget {
         onTap!();
       },
       child: Card(
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(16))),
         clipBehavior: Clip.antiAlias,
         color: color,
@@ -37,16 +36,16 @@ class OffersCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              margin: EdgeInsets.all(24),
+              margin: const EdgeInsets.all(24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    constraints: BoxConstraints(maxWidth: 120),
+                    constraints: const BoxConstraints(maxWidth: 120),
                     child: Text(
                       title,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16,
                           fontWeight: FontWeight.w600),
@@ -71,7 +70,7 @@ class OffersCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    child: Text('Shop now!'),
+                    child: const Text('Shop now!'),
                   )
                 ],
               ),

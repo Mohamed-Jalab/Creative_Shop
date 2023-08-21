@@ -9,7 +9,15 @@ int selectedItem = 0;
 int selectedItemForSize = 0;
 
 class ProductScreen extends StatelessWidget {
-  const ProductScreen({super.key});
+  const ProductScreen({
+    super.key,
+    required this.imageUrl,
+    required this.category,
+    required this.title,
+  });
+  final String imageUrl;
+  final String category;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -196,6 +204,7 @@ class ProductScreen extends StatelessWidget {
                             ),
                             Expanded(
                               child: Container(
+                                width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(20),
@@ -215,7 +224,7 @@ class ProductScreen extends StatelessWidget {
                                         Navigator.pop(context);
                                       },
                                       icon: const Icon(
-                                        Icons.arrow_back_outlined,
+                                        Icons.arrow_back_ios_new_rounded,
                                         size: 30,
                                       ),
                                     ),
@@ -250,7 +259,8 @@ class ProductScreen extends StatelessWidget {
                                     ),
                                     IconButton(
                                       onPressed: () {},
-                                      icon: const Icon(Icons.favorite, color: Colors.redAccent),
+                                      icon: const Icon(Icons.favorite,
+                                          color: Colors.redAccent),
                                     ),
                                   ],
                                 ),

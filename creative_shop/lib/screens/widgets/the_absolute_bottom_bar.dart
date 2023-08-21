@@ -1,7 +1,3 @@
-import 'package:creative_shop/screens/cart_screen.dart';
-import 'package:creative_shop/screens/favorite_screen.dart';
-import 'package:creative_shop/screens/home_screen.dart';
-import 'package:creative_shop/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../shared/constant.dart';
@@ -28,9 +24,7 @@ class _TheAbsoluteBottomBarState extends State<TheAbsoluteBottomBar> {
             setState(() {
               selectedInd = 1;
             });
-            print('if Home');
           }
-          print('Home');
         },
         icon: Icons.home_outlined,
         isSelected: selectedInd == 1,
@@ -44,9 +38,7 @@ class _TheAbsoluteBottomBarState extends State<TheAbsoluteBottomBar> {
             setState(() {
               selectedInd = 2;
             });
-            print('if Favorit');
           }
-          print('Favorit');
         },
         isSelected:selectedInd == 2,
         icon: Icons.favorite_outline_rounded,
@@ -60,9 +52,7 @@ class _TheAbsoluteBottomBarState extends State<TheAbsoluteBottomBar> {
             setState(() {
               selectedInd = 3;
             });
-            print('if My Cart');
           }
-          print('My Cart');
         },
         isSelected: selectedInd == 3,
         icon: Icons.shopping_cart_outlined,
@@ -76,9 +66,7 @@ class _TheAbsoluteBottomBarState extends State<TheAbsoluteBottomBar> {
             setState(() {
               selectedInd = 4;
             });
-            print('if Profile');
           }
-          print('Profile');
         },
         isSelected: selectedInd == 4,
         icon: Icons.person_outline_rounded,

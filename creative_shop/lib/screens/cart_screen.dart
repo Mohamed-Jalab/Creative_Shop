@@ -34,7 +34,7 @@ class CartScreen extends StatelessWidget {
                     decoration: const BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                          color: Color.fromARGB(255, 216, 216, 216),
+                          color: Color(0xFFD8D8D8),
                           offset: Offset(0.0, .4),
                           blurRadius: 10.0,
                           blurStyle: BlurStyle.outer,
@@ -48,27 +48,27 @@ class CartScreen extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        const SizedBox(height: 25),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            IconButton(
-                              icon: const Icon(Icons.arrow_back),
-                              onPressed: () {},
-                            ),
-                            const Text(
-                              'Your Cart',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.delete_outlined),
-                              onPressed: () {},
-                            ),
-                          ],
-                        ),
+                        // const SizedBox(height: 25),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //   children: [
+                        //     IconButton(
+                        //       icon: const Icon(Icons.arrow_back),
+                        //       onPressed: () {},
+                        //     ),
+                        //     const Text(
+                        //       'Your Cart',
+                        //       style: TextStyle(
+                        //         fontSize: 20,
+                        //         fontWeight: FontWeight.bold,
+                        //       ),
+                        //     ),
+                        //     IconButton(
+                        //       icon: const Icon(Icons.delete_outlined),
+                        //       onPressed: () {},
+                        //     ),
+                        //   ],
+                        // ),
                         const SizedBox(height: 20),
                         buildlistTile(
                           context,

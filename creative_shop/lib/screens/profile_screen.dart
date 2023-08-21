@@ -198,13 +198,14 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             ElevatedButton(
+              
               onPressed: () {},
               style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 60),
                   backgroundColor: secondaryColor,
                   shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(45)))),
-              child: Text('Logout',
+                      borderRadius: BorderRadius.all(Radius.circular(8)))),
+              child: const Text('Logout',
                   style: TextStyle(fontSize: 24, color: backgroundColor)),
             )
           ],

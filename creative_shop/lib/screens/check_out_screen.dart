@@ -1,3 +1,4 @@
+import 'package:creative_shop/screens/widgets/order_tracking_page.dart';
 import 'package:flutter/material.dart';
 
 import '../shared/component.dart';
@@ -9,6 +10,17 @@ class CheckOutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: const Text('Check Out'),
+        centerTitle: true,
+        backgroundColor: primaryColor,
+      ),
       backgroundColor: greyColor3,
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
@@ -22,7 +34,7 @@ class CheckOutScreen extends StatelessWidget {
                     decoration: const BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                          color: Color.fromARGB(255, 216, 216, 216),
+                          color: Color(0xFFD8D8D8),
                           offset: Offset(0.0, .4),
                           blurRadius: 10.0,
                           blurStyle: BlurStyle.outer,
@@ -36,40 +48,56 @@ class CheckOutScreen extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        const SizedBox(height: 25),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            IconButton(
-                              icon: const Icon(Icons.arrow_back),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                            const Center(
-                              child: Text(
-                                'Check Out',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            //? this is a failed solve
-                            const IconButton(
-                              icon: Icon(Icons.delete_outlined,
-                                  color: Colors.transparent),
-                              onPressed: null,
-                            ),
-                          ],
-                        ),
+                        // const SizedBox(height: 25),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //   children: [
+                        //     IconButton(
+                        //       icon: const Icon(Icons.arrow_back),
+                        //       onPressed: () {
+                        //         Navigator.of(context).pop();
+                        //       },
+                        //     ),
+                        //     const Center(
+                        //       child: Text(
+                        //         'Check Out',
+                        //         style: TextStyle(
+                        //           fontSize: 20,
+                        //           fontWeight: FontWeight.bold,
+                        //         ),
+                        //       ),
+                        //     ),
+                        //     //? this is a failed solve
+                        //     const IconButton(
+                        //       icon: Icon(Icons.delete_outlined,
+                        //           color: Colors.transparent),
+                        //       onPressed: null,
+                        //     ),
+                        //   ],
+                        // ),
                         const SizedBox(height: 20),
-                        buildlistTile(
-                          context,
-                          imageUrl: 'asset/images/1.jpg',
-                          title: 'Product name',
-                          subTitle: '69.99',
+                        ListTile(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (_) => const OrderTrackingPage()));
+                          },
+                          leading: const Icon(Icons.location_on_outlined,
+                              color: Colors.black),
+                          title: const Text('Set your location'),
+                          subtitle: const Text(
+                              'to deliver your goods to your location'),
+                          trailing: const Icon(Icons.arrow_forward_ios_rounded),
                         ),
+                        distance(),
+                        RadioListTile(
+                            fillColor: MaterialStateProperty.all<Color>(
+                                secondaryColor),
+                            value: 1,
+                            groupValue: 1,
+                            onChanged: (value) {},
+                            title:
+                                const Text('I will pay cash')),
+                        distance(),
                         const SizedBox(height: 10),
                         const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -158,7 +186,7 @@ class CheckOutScreen extends StatelessWidget {
                       context,
                       image: 'asset/images/check-all.png',
                       subTitle:
-                          "Your order has been successfully\npaid. It can be tracked in the\n\"Order\" section.",
+                          "Your order has been successfully\npaid. Your product(s) are recived\nafter one hour.",
                     );
                   },
                 ),

@@ -10,6 +10,12 @@ class CategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
         backgroundColor: const Color.fromRGBO(35, 47, 62, 1),
         title: const Text(
           "Category",
@@ -19,10 +25,7 @@ class CategoryScreen extends StatelessWidget {
         actions: const [
           Padding(
             padding: EdgeInsets.all(10.0),
-            child: Icon(
-              Icons.search,
-              size: 27,
-            ),
+            child: Icon(Icons.search, size: 27),
           )
         ],
       ),
@@ -37,7 +40,7 @@ class CategoryScreen extends StatelessWidget {
                   crossAxisCount: 2, mainAxisSpacing: 10, mainAxisExtent: 190),
               itemCount: model.length,
               itemBuilder: (BuildContext context, int index) {
-                return grid(context, model[index]);
+                return grid(context, model[index], listOfCards(index));
               },
             ),
           ],
