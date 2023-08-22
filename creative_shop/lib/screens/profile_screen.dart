@@ -1,3 +1,6 @@
+import 'package:creative_shop/screens/login_screen.dart';
+import 'package:creative_shop/shared/component.dart';
+import 'package:creative_shop/shared/constant.dart';
 import 'package:flutter/material.dart';
 
 import 'about_us_screen.dart';
@@ -14,32 +17,35 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
-        leading: const Padding(
-          padding: EdgeInsets.all(8.0),
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: CircleAvatar(
-            backgroundImage: AssetImage('asset/images/test.png'),
+            backgroundColor: secondaryColor,
+            child: Text(publicModel.username[0].toUpperCase(),
+                style: const TextStyle(
+                    color: whiteColor, fontWeight: FontWeight.bold)),
           ),
         ),
-        title: const Column(
+        title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('firstName lastName',
+            Text(publicModel.username,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 18,
+                    fontSize: 20,
                     color: backgroundColor)),
-            SizedBox(
+            const SizedBox(
               height: 4,
             ),
-            Text('email@gmail.com',
+            Text(publicModel.email,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 14, color: backgroundColor)),
+                style: const TextStyle(fontSize: 16, color: backgroundColor)),
           ],
         ),
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.edit))],
+        // actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.edit))],
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -47,6 +53,7 @@ class ProfileScreen extends StatelessWidget {
           children: [
             Expanded(
               child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
                     Container(
@@ -198,8 +205,48 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-              
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (_) => AlertDialog(
+                    content: SizedBox(
+                      height: 150,
+                      child: Column(
+                        children: [
+                          const Text(
+                            'Logout',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Divider(),
+                          ),
+                          const Text("Are you sure to logout"),
+                          const Expanded(child: SizedBox()),
+                          buildBigButton(context, child: const Text('Logout'),
+                              onPressed: () {
+                            Navigator.of(context).pop();
+                            Future.delayed(
+                              const Duration(seconds: 1),
+                              () => Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (_) => const LoginScreen(),
+                                ),
+                              ),
+                            );
+                            selectedInd = 1;
+                          },
+                              color: secondaryColor,
+                              borderRadius: BorderRadius.circular(45))
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
               style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 60),
                   backgroundColor: secondaryColor,

@@ -30,35 +30,6 @@ class CateScreen extends StatelessWidget {
         );
       };
     }
-    final itemCards = [
-      ItemCard(
-          onTap: () {
-            // Navigator.of(context)
-            //     .push(MaterialPageRoute(builder: (_) => ProductScreen()));
-          },
-          image: 'asset/images/pants2.jpeg',
-          title: 'Lorem ipsum',
-          newPrice: '99\$',
-          category: 'category',
-          saleText: '-87%',
-          oldPrice: '60\$',
-          isFavorite: true),
-      ItemCard(
-        onTap: () {},
-        image: 'asset/images/pant.jpg',
-        title: 'Lorem ipsum',
-        newPrice: '99\$',
-        category: 'category',
-        saleText: '-87%',
-      ),
-      ItemCard(
-          onTap: () {},
-          image: 'asset/images/pant.jpg',
-          title: 'Lorem ipsum',
-          newPrice: '99\$',
-          category: 'category',
-          isFavorite: true),
-    ];
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -72,9 +43,7 @@ class CateScreen extends StatelessWidget {
                       child: IntrinsicGridView.vertical(
                         columnCount: 1,
                         children: [
-                          SizedBox(
-                            height: 130,
-                          ),
+                          SizedBox(height: 130),
                           IntrinsicGridView.vertical(
                             columnCount: 2,
                             horizontalSpace: 4,
@@ -82,18 +51,7 @@ class CateScreen extends StatelessWidget {
                             padding: EdgeInsets.only(
                                 top: 16, bottom: 12, left: 4, right: 4),
                             children: List.generate(list.length, (index) {
-                              return ItemCard(
-                                image: list[index].image,
-                                title: list[index].title,
-                                newPrice: list[index].newPrice,
-                                category: list[index].category,
-                                isFavorite: list[index].isFavorite,
-                                saleText: list[index].saleText,
-                                oldPrice: list[index].oldPrice,
-                                backgroundColor:
-                                    list[index].backgroundColor,
-                                onTap: list[index].onTap,
-                              );
+                              return list[index];
                             }),
                           )
                         ],

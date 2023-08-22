@@ -24,6 +24,8 @@ class OnboardingScreen extends StatelessWidget {
             body: Stack(
               children: [
                 PageView.builder(
+        physics: const BouncingScrollPhysics(),
+
                   onPageChanged: cubit.onPageChanged,
                   controller: cubit.controller,
                   itemBuilder: (context, index) {
@@ -42,7 +44,7 @@ class OnboardingScreen extends StatelessWidget {
                   right: 10,
                   top: 30,
                   child: TextButton(
-                    onPressed: () {
+                    onPressed: () async {
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
                           builder: (context) => const LoginScreen(),

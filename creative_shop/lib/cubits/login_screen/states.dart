@@ -1,3 +1,5 @@
+import 'package:creative_shop/models/sign_up_model.dart';
+
 import '../../models/login_model.dart';
 
 abstract class LoginStates {}
@@ -9,7 +11,7 @@ class LoginVisiblePasswordState extends LoginStates {}
 class LoginLoadingState extends LoginStates {}
 
 class LoginSuccessState extends LoginStates {
-  LoginModel model;
+  SignUpModel model;
   LoginSuccessState(this.model);
 }
 

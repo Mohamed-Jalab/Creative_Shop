@@ -28,6 +28,7 @@ class CheckOutScreen extends StatelessWidget {
           alignment: Alignment.topCenter,
           children: [
             SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
                   Container(
@@ -95,8 +96,7 @@ class CheckOutScreen extends StatelessWidget {
                             value: 1,
                             groupValue: 1,
                             onChanged: (value) {},
-                            title:
-                                const Text('I will pay cash')),
+                            title: const Text('I will pay cash')),
                         distance(),
                         const SizedBox(height: 10),
                         const Padding(

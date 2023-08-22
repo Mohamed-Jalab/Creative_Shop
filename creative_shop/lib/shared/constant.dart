@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../models/login_model.dart';
+import '../models/sign_up_model.dart';
 import '../screens/widgets/item_card.dart';
 
 const primaryColor = Color(0xFF232F3E);
@@ -36,6 +39,7 @@ final giftsCards = [
     title: 'Party Gift',
     newPrice: '199\$',
     category: 'Gifts',
+    isFavorite: true,
   ),
   ItemCard(
     onTap: () {},
@@ -114,6 +118,7 @@ final paperCards = [
     title: 'Paper Roses',
     newPrice: '69\$',
     category: 'Papers',
+    isFavorite: true,
   ),
   ItemCard(
     onTap: () {},
@@ -162,3 +167,22 @@ final raizenCards = [
     category: 'Raizens',
   ),
 ];
+SignUpModel publicModel = SignUpModel(
+  username: '',
+  email: '',
+  password: '',
+);
+
+List<List<ItemCard>> allProduct = [
+  accessoriesCards,
+  candlesCards,
+  collagesCards,
+  flowersCards,
+  paperCards,
+  embroideryCards,
+  giftsCards,
+  raizenCards,
+];
+
+bool login = false;
+SharedPreferences? sharedPreferences;

@@ -22,7 +22,7 @@ class LoginCubit extends Cubit<LoginStates> {
     emit(LoginVisiblePasswordState());
   }
 
-  void login(LoginModel model) async {
+  void login(SignUpModel model) async {
     emit(LoginLoadingState());
     try {
       UserCredential user =
@@ -35,7 +35,7 @@ class LoginCubit extends Cubit<LoginStates> {
       QuerySnapshot data = await useref.get();
       List<QueryDocumentSnapshot> dataList = data.docs;
       for (var element in dataList) {
-        String  data = jsonEncode(element.data());
+        String data = jsonEncode(element.data());
         var jsondata = jsonDecode(data);
         // --------------------------------------------------
         // print(data);
@@ -43,8 +43,10 @@ class LoginCubit extends Cubit<LoginStates> {
         SignUpModel test = SignUpModel.fromJson(jsondata);
         if (test.email == model.email) {
           print(test.username);
+          model.username = test.username;
         }
       }
+      
       emit(LoginSuccessState(model));
     } on FirebaseAuthException catch (erorr) {
       if (erorr.code == "user-not-found") {

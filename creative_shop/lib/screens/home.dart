@@ -17,8 +17,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<Widget> screens = [
-    HomeScreen(),
-    const FavoritScreen(),
+    const HomeScreen(),
+    FavoriteScreen(),
     const CartScreen(),
     const ProfileScreen(),
   ];
@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
           }
         },
         isSelected: selectedInd == 1,
-        icon: selectedInd == 1 ? Icons.home :Icons.home_outlined,
+        icon: selectedInd == 1 ? Icons.home : Icons.home_outlined,
         title: 'Home',
       ),
       NavBarIcon(
@@ -47,8 +47,10 @@ class _HomeState extends State<Home> {
             });
           }
         },
-        isSelected:selectedInd == 2,
-        icon:selectedInd == 2?Icons.favorite_rounded : Icons.favorite_outline_rounded,
+        isSelected: selectedInd == 2,
+        icon: selectedInd == 2
+            ? Icons.favorite_rounded
+            : Icons.favorite_outline_rounded,
         title: 'Favorite',
       ),
       NavBarIcon(
@@ -62,7 +64,9 @@ class _HomeState extends State<Home> {
           }
         },
         isSelected: selectedInd == 3,
-        icon:selectedInd == 3? Icons.shopping_cart :Icons.shopping_cart_outlined,
+        icon: selectedInd == 3
+            ? Icons.shopping_cart
+            : Icons.shopping_cart_outlined,
         title: 'My Cart',
       ),
       NavBarIcon(
@@ -74,33 +78,35 @@ class _HomeState extends State<Home> {
           }
         },
         isSelected: selectedInd == 4,
-        icon:selectedInd==4?Icons.person_rounded: Icons.person_outline_rounded,
+        icon: selectedInd == 4
+            ? Icons.person_rounded
+            : Icons.person_outline_rounded,
         title: 'Profile',
       ),
     ];
     return Scaffold(
-      body: screens[selectedInd-1],
+      body: screens[selectedInd - 1],
       bottomNavigationBar: BottomAppBar(
-      elevation: 8,
-      color: Colors.white,
-      child: SizedBox(
-        height: 55,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: List.generate(navIcons.length, (index) {
-            bool isThisTheTime = (index + 1 == selectedInd);
-            NavBarIcon returnedOne = NavBarIcon(
-              onTap: navIcons[index].onTap,
-              title: navIcons[index].title,
-              icon: navIcons[index].icon,
-              isSelected: isThisTheTime,
-            );
-            return returnedOne;
-          }),
+        elevation: 8,
+        color: Colors.white,
+        child: SizedBox(
+          height: 55,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: List.generate(navIcons.length, (index) {
+              bool isThisTheTime = (index + 1 == selectedInd);
+              NavBarIcon returnedOne = NavBarIcon(
+                onTap: navIcons[index].onTap,
+                title: navIcons[index].title,
+                icon: navIcons[index].icon,
+                isSelected: isThisTheTime,
+              );
+              return returnedOne;
+            }),
+          ),
         ),
       ),
-    ),
     );
   }
 }

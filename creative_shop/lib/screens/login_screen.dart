@@ -1,9 +1,9 @@
+import 'package:creative_shop/models/sign_up_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../cubits/login_screen/cubit.dart';
 import '../cubits/login_screen/states.dart';
-import '../models/login_model.dart';
 import '../shared/component.dart';
 import '../shared/constant.dart';
 import 'home.dart';
@@ -21,6 +21,14 @@ class LoginScreen extends StatelessWidget {
           if (state is LoginErorrState) {
             message(context, state.error);
           } else if (state is LoginSuccessState) {
+            print('login is ${sharedPreferences?.getBool('login')}');
+            sharedPreferences?.setBool('login', true);
+            sharedPreferences?.setStringList('usermodel', [
+              publicModel.email,
+              publicModel.password,
+              publicModel.username,
+            ]);
+            print('login is ${sharedPreferences?.getBool('login')}');
             message(context, "Log In Successfully");
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
@@ -33,6 +41,7 @@ class LoginScreen extends StatelessWidget {
           LoginCubit cubit = BlocProvider.of<LoginCubit>(context);
           return Scaffold(
             body: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
@@ -89,11 +98,9 @@ class LoginScreen extends StatelessWidget {
                     buildBigButton(context, onPressed: () async {
                       if (cubit.emailController.text != '' &&
                           cubit.passwordController.text != '') {
-                        LoginModel userModel = LoginModel(
-                          email: cubit.emailController.text,
-                          password: cubit.passwordController.text,
-                        );
-                        cubit.login(userModel);
+                        publicModel.email = cubit.emailController.text;
+                        publicModel.password = cubit.passwordController.text;
+                        cubit.login(publicModel);
                       }
                     },
                         height: 48,

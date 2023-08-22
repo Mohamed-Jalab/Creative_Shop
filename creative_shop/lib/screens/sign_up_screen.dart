@@ -27,6 +27,7 @@ class SignUpScreen extends StatelessWidget {
           SignUpCubit cubit = BlocProvider.of(context);
           return Scaffold(
             body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(

@@ -22,6 +22,7 @@ class AboutUsScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(

@@ -28,6 +28,7 @@ class CartScreen extends StatelessWidget {
           alignment: Alignment.topCenter,
           children: [
             SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
                   Container(

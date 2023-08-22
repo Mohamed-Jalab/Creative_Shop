@@ -133,6 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       // bottomNavigationBar: TheAbsoluteBottomBar(selectedInd: selectedInd),
       body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
         slivers: [
           SliverFillRemaining(
             child: Stack(
@@ -141,142 +142,155 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Expanded(
-                      child: IntrinsicGridView.vertical(
-                        columnCount: 1,
-                        children: [
-                          const SizedBox(height: 140),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 12, right: 12),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  'Categories',
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                TextButton(
-                                  style: ButtonStyle(
-                                    foregroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            secondaryColor),
+                      child: SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
+                        child: IntrinsicGridView.vertical(
+                          columnCount: 1,
+                          children: [
+                            const SizedBox(height: 140),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 12, right: 12),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                    'Categories',
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600),
                                   ),
-                                  onPressed: () {
+                                  TextButton(
+                                    style: ButtonStyle(
+                                      foregroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              secondaryColor),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.of(context)
+                                          .push(MaterialPageRoute(
+                                        builder: (context) =>
+                                            const CategoryScreen(),
+                                      ));
+                                    },
+                                    child: const Text('See All'),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8, right: 8),
+                              child: SizedBox(
+                                height: 165,
+                                child: PageView(
+                                  physics: const BouncingScrollPhysics(),
+                                  padEnds: false,
+                                  clipBehavior: Clip.none,
+                                  controller: controller,
+                                  children: cateCards,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: 12,
+                                right: 12,
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                    'Trends',
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  TextButton(
+                                    style: ButtonStyle(
+                                      foregroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              secondaryColor),
+                                    ),
+                                    onPressed: () {
+                                      /*todo go to see all page*/
+                                    },
+                                    child: const Text('See All'),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: 8,
+                                right: 8,
+                              ),
+                              child: SizedBox(
+                                height: 300,
+                                child: PageView(
+                                  physics: const BouncingScrollPhysics(),
+                                  padEnds: false,
+                                  controller: controller,
+                                  clipBehavior: Clip.none,
+                                  // itemCount: pages.length,
+                                  children: trendCards,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            const Padding(
+                              padding:
+                                  EdgeInsets.only(left: 12, right: 12, top: 8),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Newest',
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            IntrinsicGridView.vertical(
+                              columnCount: 2,
+                              horizontalSpace: 4,
+                              verticalSpace: 4,
+                              padding: const EdgeInsets.only(
+                                  top: 16, bottom: 12, left: 4, right: 4),
+                              children:
+                                  List.generate(itemCards.length, (index) {
+                                return ItemCard(
+                                  image: itemCards[index].image,
+                                  title: itemCards[index].title,
+                                  newPrice: itemCards[index].newPrice,
+                                  category: itemCards[index].category,
+                                  isFavorite: itemCards[index].isFavorite,
+                                  saleText: itemCards[index].saleText,
+                                  oldPrice: itemCards[index].oldPrice,
+                                  backgroundColor:
+                                      itemCards[index].backgroundColor,
+                                  onTap: () {
                                     Navigator.of(context)
                                         .push(MaterialPageRoute(
-                                      builder: (context) =>
-                                          const CategoryScreen(),
-                                    ));
+                                            builder: (_) => ProductScreen(
+                                                  imageUrl:
+                                                      itemCards[index].image,
+                                                  title: itemCards[index].title,
+                                                  category:
+                                                      itemCards[index].category,
+                                                )));
                                   },
-                                  child: const Text('See All'),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8, right: 8),
-                            child: SizedBox(
-                              height: 165,
-                              child: PageView(
-                                padEnds: false,
-                                clipBehavior: Clip.none,
-                                controller: controller,
-                                children: cateCards,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 12,
-                              right: 12,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  'Trends',
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                TextButton(
-                                  style: ButtonStyle(
-                                    foregroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            secondaryColor),
-                                  ),
-                                  onPressed: () {
-                                    /*todo go to see all page*/
-                                  },
-                                  child: const Text('See All'),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 8,
-                              right: 8,
-                            ),
-                            child: SizedBox(
-                              height: 300,
-                              child: PageView(
-                                padEnds: false,
-                                controller: controller,
-                                clipBehavior: Clip.none,
-                                // itemCount: pages.length,
-                                children: trendCards,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          const Padding(
-                            padding:
-                                EdgeInsets.only(left: 12, right: 12, top: 8),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Newest',
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              ],
-                            ),
-                          ),
-                          IntrinsicGridView.vertical(
-                            columnCount: 2,
-                            horizontalSpace: 4,
-                            verticalSpace: 4,
-                            padding: const EdgeInsets.only(
-                                top: 16, bottom: 12, left: 4, right: 4),
-                            children: List.generate(itemCards.length, (index) {
-                              return ItemCard(
-                                image: itemCards[index].image,
-                                title: itemCards[index].title,
-                                newPrice: itemCards[index].newPrice,
-                                category: itemCards[index].category,
-                                isFavorite: itemCards[index].isFavorite,
-                                saleText: itemCards[index].saleText,
-                                oldPrice: itemCards[index].oldPrice,
-                                backgroundColor:
-                                    itemCards[index].backgroundColor,
-                                onTap: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (_) => ProductScreen(
-                                            imageUrl: itemCards[index].image,
-                                            title: itemCards[index].title,
-                                            category: itemCards[index].category,
-                                          )));
-                                },
-                              );
-                            }),
-                          )
-                        ],
+                                );
+                              }),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ],
