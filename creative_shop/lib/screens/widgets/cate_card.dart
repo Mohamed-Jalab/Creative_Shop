@@ -19,7 +19,6 @@ class CateCard extends StatelessWidget {
       onTap: () {
         onTap();
         // !put Navigator
-        print('cate_screen');
       },
       child: Padding(
         padding: const EdgeInsets.all(4),

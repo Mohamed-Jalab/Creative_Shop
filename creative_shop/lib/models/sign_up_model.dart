@@ -8,19 +8,19 @@ class SignUpModel {
     required this.password,
   });
 
-  factory SignUpModel.fromJson(Map<String, dynamic> json) {
+  factory SignUpModel.fromJson(Map<String, Object?> json) {
     return SignUpModel(
-      username: json['username'],
-      email: json['email'],
-      password: json['password'],
+      username: json['username'] as String,
+      email: json['email'] as String,
+      password: json['password'] as String,
     );
   }
 
-  Map<String, dynamic> toJson(SignUpModel model) {
-    Map<String, dynamic> json = {};
-    json['username'] = username;
-    json['email'] = email;
-    json['password'] = password;
-    return json;
+  Map<String, Object?> toJson() {
+    return {
+      'username': username,
+      'email': email,
+      'password': password,
+    };
   }
 }

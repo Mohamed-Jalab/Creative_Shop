@@ -1,4 +1,5 @@
 import 'package:creative_shop/models/sign_up_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,6 +9,25 @@ import '../shared/component.dart';
 import '../shared/constant.dart';
 import 'home.dart';
 import 'sign_up_screen.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+Future<UserCredential> signInWithGoogle() async {
+  // Trigger the authentication flow
+  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+  // Obtain the auth details from the request
+  final GoogleSignInAuthentication? googleAuth =
+      await googleUser?.authentication;
+
+  // Create a new credential
+  final credential = GoogleAuthProvider.credential(
+    accessToken: googleAuth?.accessToken,
+    idToken: googleAuth?.idToken,
+  );
+
+  // Once signed in, return the UserCredential
+  return await FirebaseAuth.instance.signInWithCredential(credential);
+}
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -21,14 +41,12 @@ class LoginScreen extends StatelessWidget {
           if (state is LoginErorrState) {
             message(context, state.error);
           } else if (state is LoginSuccessState) {
-            print('login is ${sharedPreferences?.getBool('login')}');
             sharedPreferences?.setBool('login', true);
             sharedPreferences?.setStringList('usermodel', [
               publicModel.email,
               publicModel.password,
               publicModel.username,
             ]);
-            print('login is ${sharedPreferences?.getBool('login')}');
             message(context, "Log In Successfully");
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
@@ -96,11 +114,14 @@ class LoginScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 15),
                     buildBigButton(context, onPressed: () async {
+                      FocusManager.instance.primaryFocus?.unfocus();
                       if (cubit.emailController.text != '' &&
                           cubit.passwordController.text != '') {
                         publicModel.email = cubit.emailController.text;
                         publicModel.password = cubit.passwordController.text;
                         cubit.login(publicModel);
+                      } else {
+                        message(context, 'Complete all fields');
                       }
                     },
                         height: 48,
@@ -122,6 +143,7 @@ class LoginScreen extends StatelessWidget {
                         buildTextButton(
                           'Sign Up',
                           onPressed: () {
+                            FocusManager.instance.primaryFocus?.unfocus();
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (_) => const SignUpScreen(),
@@ -160,7 +182,26 @@ class LoginScreen extends StatelessWidget {
                           width: 33,
                           height: 33,
                         ),
-                        onTap: () {},
+                        onTap: () async {
+                          FocusManager.instance.primaryFocus?.unfocus();
+                          try {
+                            UserCredential userRef = await signInWithGoogle();
+                            publicModel.username = userRef.user!.displayName!;
+                            publicModel.email = userRef.user!.email!;
+                            publicModel.password = 'password with google';
+                            if (context.mounted) {
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (_) => const Home(),
+                                ),
+                              );
+                            }
+                          } on Exception catch (e) {
+                            print(e);
+                          }
+
+                          // SignUpModel(username: userRef.user!.displayName!, email: userRef.user!.email!, password: userRef.user!)
+                        },
                       ),
                     ),
                   ],

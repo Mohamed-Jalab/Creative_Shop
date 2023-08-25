@@ -24,8 +24,7 @@ class OnboardingScreen extends StatelessWidget {
             body: Stack(
               children: [
                 PageView.builder(
-        physics: const BouncingScrollPhysics(),
-
+                  physics: const BouncingScrollPhysics(),
                   onPageChanged: cubit.onPageChanged,
                   controller: cubit.controller,
                   itemBuilder: (context, index) {

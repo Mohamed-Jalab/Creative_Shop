@@ -1,7 +1,7 @@
+import 'package:creative_shop/models/item_of_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../models/login_model.dart';
 import '../models/sign_up_model.dart';
 import '../screens/widgets/item_card.dart';
 
@@ -168,9 +168,9 @@ final raizenCards = [
   ),
 ];
 SignUpModel publicModel = SignUpModel(
-  username: '',
-  email: '',
-  password: '',
+  username: 'NULL',
+  email: 'NULL',
+  password: 'NULL',
 );
 
 List<List<ItemCard>> allProduct = [
@@ -186,3 +186,4 @@ List<List<ItemCard>> allProduct = [
 
 bool login = false;
 SharedPreferences? sharedPreferences;
+List<ItemOfCart> listOfCartItems = [];

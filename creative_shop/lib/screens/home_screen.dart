@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intrinsic_grid_view/intrinsic_grid_view.dart';
 
 import '../shared/constant.dart';
+import 'cate_screen.dart';
 import 'category_screen.dart';
 import 'product_screen.dart';
 import 'widgets/cate_card.dart';
@@ -25,14 +26,12 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     trendCards = [
       ItemCard(
-        onTap: () {},
-        // onTap: () => Navigator.of(context)
-        //     .push(MaterialPageRoute(builder: (_) =>  ProductScreen())),
+        onTap: () {
+        },
         image: 'asset/images/accessories/1.jpg',
         title: 'Pearl Bracelet',
         newPrice: '199\$',
         category: 'Accessories',
-        isFavorite: true,
       ),
       ItemCard(
           onTap: () {},
@@ -71,8 +70,8 @@ class _HomeScreenState extends State<HomeScreen> {
         title: 'Paper Roses',
         newPrice: '59\$',
         category: 'Papers',
-        saleText: '-40%',
-        oldPrice: '99\$',
+        // saleText: '-40%',
+        // oldPrice: '99\$',
         isFavorite: true,
       ),
       ItemCard(
@@ -80,14 +79,14 @@ class _HomeScreenState extends State<HomeScreen> {
         image: 'asset/images/flowers/2.jpg',
         title: 'Flower with Letter',
         newPrice: '99\$',
-        oldPrice: '74.99\$',
+        // oldPrice: '74.99\$',
         category: 'Flowers',
-        saleText: '+25%',
+        // saleText: '+25%',
       ),
       ItemCard(
         onTap: () {},
         image: 'asset/images/gifts/1.jpg',
-        title: 'Little Gifts',
+        title: 'Party Gifts',
         newPrice: '39\$',
         category: 'Gifts',
         isFavorite: true,
@@ -109,29 +108,44 @@ class _HomeScreenState extends State<HomeScreen> {
     ];
     cateCards = [
       CateCard(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) =>
+                  CateScreen(list: accessoriesCards, title: 'Accessories')));
+        },
         image: const AssetImage('asset/images/accessories/1.jpg'),
         title: 'Accessories',
       ),
       CateCard(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) =>
+                  CateScreen(list: candlesCards, title: 'Candles')));
+        },
         image: const AssetImage('asset/images/candles/1.jpg'),
         title: 'Candles',
       ),
       CateCard(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) =>
+                  CateScreen(list: collagesCards, title: 'Collages')));
+        },
         image: const AssetImage('asset/images/collages/3.jpg'),
         title: 'Collages',
       ),
       CateCard(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) =>
+                  CateScreen(list: embroideryCards, title: 'Embroideries')));
+        },
         image: const AssetImage('asset/images/embroidery/1.jpg'),
         title: 'Embroideries',
       ),
     ];
 
     return Scaffold(
-      // bottomNavigationBar: TheAbsoluteBottomBar(selectedInd: selectedInd),
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: [
@@ -162,7 +176,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                         fontWeight: FontWeight.w600),
                                   ),
                                   TextButton(
-                                    style: ButtonStyle(
+                                    
+                                    style: 
+                                    ButtonStyle(
+                                      overlayColor: MaterialStateColor.resolveWith((_) => secondaryColor.withOpacity(.1)),
                                       foregroundColor:
                                           MaterialStateProperty.all<Color>(
                                               secondaryColor),
@@ -192,33 +209,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(
+                            const Padding(
+                              padding: EdgeInsets.only(
                                 left: 12,
                                 right: 12,
+                                bottom: 12,
                               ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text(
-                                    'Trends',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  TextButton(
-                                    style: ButtonStyle(
-                                      foregroundColor:
-                                          MaterialStateProperty.all<Color>(
-                                              secondaryColor),
-                                    ),
-                                    onPressed: () {
-                                      /*todo go to see all page*/
-                                    },
-                                    child: const Text('See All'),
-                                  ),
-                                ],
+                              child: Text(
+                                'Trends',
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600),
                               ),
                             ),
                             Padding(

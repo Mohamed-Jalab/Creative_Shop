@@ -4,9 +4,15 @@ import 'package:flutter/material.dart';
 import '../shared/component.dart';
 import '../shared/constant.dart';
 
-class CheckOutScreen extends StatelessWidget {
-  const CheckOutScreen({super.key});
+class CheckOutScreen extends StatefulWidget {
+  const CheckOutScreen({super.key, required this.total});
+  final int total;
 
+  @override
+  State<CheckOutScreen> createState() => _CheckOutScreenState();
+}
+
+class _CheckOutScreenState extends State<CheckOutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,12 +105,12 @@ class CheckOutScreen extends StatelessWidget {
                             title: const Text('I will pay cash')),
                         distance(),
                         const SizedBox(height: 10),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20.0),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 'Goods:',
                                 style: TextStyle(
                                   color: Colors.grey,
@@ -112,8 +118,8 @@ class CheckOutScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                '\$11,772.7',
-                                style: TextStyle(fontSize: 17),
+                                '\$${widget.total}',
+                                style: const TextStyle(fontSize: 17),
                               ),
                             ],
                           ),
@@ -141,12 +147,12 @@ class CheckOutScreen extends StatelessWidget {
                         const SizedBox(height: 10),
                         distance(),
                         const SizedBox(height: 10),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20.0),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 'Toatal Price:',
                                 style: TextStyle(
                                   color: Colors.grey,
@@ -155,8 +161,8 @@ class CheckOutScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                '\$11,772.7',
-                                style: TextStyle(
+                                '\$${widget.total}',
+                                style: const TextStyle(
                                   fontSize: 17,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -173,15 +179,18 @@ class CheckOutScreen extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 10,
+              bottom: 15,
               child: SizedBox(
                 width: MediaQuery.of(context).size.width - 20,
                 child: buildBigButton(
                   context,
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 15),
                   color: secondaryColor,
                   child: const Text('Pay', style: TextStyle(fontSize: 20)),
                   onPressed: () {
+                    setState(() {
+                      listOfCartItems = [];
+                    });
                     buildMessage(
                       context,
                       image: 'asset/images/check-all.png',

@@ -1,5 +1,4 @@
 import 'package:creative_shop/screens/home.dart';
-import 'package:creative_shop/screens/login_screen.dart';
 import 'package:creative_shop/shared/constant.dart';
 import 'package:flutter/material.dart';
 
@@ -41,7 +40,7 @@ class _SpalshScreenState extends State<SpalshScreen> {
     return Scaffold(
       body: AnimatedOpacity(
         opacity: opacity,
-        duration: const Duration(milliseconds: 700),
+        duration: const Duration(milliseconds: 900),
         child: Center(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0),

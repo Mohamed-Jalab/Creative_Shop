@@ -9,6 +9,8 @@ class ChangeSelectItemState extends ProductState {}
 
 class ChangeSizeOfItemState extends ProductState {}
 
+class ChangeFavoriteItemState extends ProductState {}
+
 class AddToItem extends ProductState {}
 
 class RemoveFromItem extends ProductState {}

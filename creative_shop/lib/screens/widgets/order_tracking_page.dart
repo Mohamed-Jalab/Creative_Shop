@@ -1,10 +1,11 @@
 import 'dart:async';
-import 'dart:typed_data';
 
 import 'package:creative_shop/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../../shared/constant.dart';
+
 class OrderTrackingPage extends StatefulWidget {
   const OrderTrackingPage({Key? key}) : super(key: key);
 
@@ -16,7 +17,7 @@ class OrderTrackingPageState extends State<OrderTrackingPage> {
   final Completer<GoogleMapController> _controller = Completer();
 
   static const LatLng sourceLocation = LatLng(36.2074, 37.1440);
-  
+
   BitmapDescriptor sourceIcon = BitmapDescriptor.defaultMarker;
   void setCustomMarkerIcon() {
     BitmapDescriptor.fromAssetImage(
@@ -49,9 +50,7 @@ class OrderTrackingPageState extends State<OrderTrackingPage> {
       appBar: AppBar(
         backgroundColor: primaryColor,
         centerTitle: true,
-        title: const Text(
-          "Creative Shop"
-        ),
+        title: const Text("Creative Shop"),
       ),
       body: Center(
         child: GoogleMap(
@@ -60,7 +59,7 @@ class OrderTrackingPageState extends State<OrderTrackingPage> {
           markers: {
             Marker(
               icon: sourceIcon,
-              markerId: MarkerId('source'),
+              markerId: const MarkerId('source'),
               position: sourceLocation,
             ),
           },

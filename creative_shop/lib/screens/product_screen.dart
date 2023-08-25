@@ -1,3 +1,5 @@
+import 'package:creative_shop/models/item_of_cart.dart';
+import 'package:creative_shop/shared/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -55,14 +57,14 @@ class ProductScreen extends StatelessWidget {
                               ),
                               height: double.infinity,
                               child: Image.asset(
-                                'asset/images/1.jpg',
-                                fit: BoxFit.cover,
+                                imageUrl,
+                                fit: BoxFit.fill,
                               ),
                             ),
                           ),
                         ),
                         SizedBox(
-                          height: double.infinity,
+                          height: double.maxFinite,
                           child: IconButton(
                             icon: const Icon(
                               Icons.arrow_forward_ios_rounded,
@@ -107,18 +109,16 @@ class ProductScreen extends StatelessWidget {
                                     cubit.addToAmountOfItem();
                                   },
                                   amountOfProduct: cubit.amountOfItem,
-                                  priseOfProduct: cubit.amountOfItem * 1500.99,
-                                  imageOfProduct: 'asset/images/1.jpg',
-                                  typeOfProduct: 'KITON',
-                                  nameOfProduct: 'Cashmere Jacket',
+                                  // !Price of item
+                                  priseOfProduct: cubit.amountOfItem * 69.99,
+                                  imageOfProduct: imageUrl,
+                                  typeOfProduct: category,
+                                  nameOfProduct: title,
                                 ),
                               ),
                             ),
                             const Divider(
-                              endIndent: 5,
-                              indent: 5,
-                              thickness: 1,
-                            ),
+                                endIndent: 5, indent: 5, thickness: 1),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -129,9 +129,7 @@ class ProductScreen extends StatelessWidget {
                                     fontSize: 16,
                                   ),
                                 ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
+                                const SizedBox(height: 5),
                                 SizedBox(
                                   height: 50,
                                   child: ListView.separated(
@@ -157,9 +155,7 @@ class ProductScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
+                            const SizedBox(height: 10),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -170,9 +166,7 @@ class ProductScreen extends StatelessWidget {
                                     fontSize: 16,
                                   ),
                                 ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
+                                const SizedBox(height: 5),
                                 SizedBox(
                                   height: 50,
                                   child: ListView.separated(
@@ -183,7 +177,7 @@ class ProductScreen extends StatelessWidget {
                                       selectedColor:
                                           selectedItemForSize == index
                                               ? Colors.black
-                                              : Colors.white,
+                                              : Colors.transparent,
                                       inkwellWork: () {
                                         selectedItemForSize =
                                             cubit.cahngeSizeOfProduct(index);
@@ -191,17 +185,13 @@ class ProductScreen extends StatelessWidget {
                                       sizeOfProduct: sizeItem[index],
                                     ),
                                     separatorBuilder: (context, index) =>
-                                        const SizedBox(
-                                      width: 10,
-                                    ),
+                                        const SizedBox(width: 10),
                                     itemCount: sizeItem.length,
                                   ),
                                 ),
                               ],
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
+                            const SizedBox(height: 10),
                             Expanded(
                               child: Container(
                                 width: MediaQuery.of(context).size.width,
@@ -231,11 +221,20 @@ class ProductScreen extends StatelessWidget {
                                     Expanded(
                                       child: InkWell(
                                         onTap: () {
-                                          buildMessage(context,
-                                              image:
-                                                  'asset/images/check-all.png',
-                                              subTitle:
-                                                  "This product has added to\nYour Cart");
+                                          if (cubit.amountOfItem > 0) {
+                                            buildMessage(context,
+                                                image:
+                                                    'asset/images/check-all.png',
+                                                subTitle:
+                                                    "This product has added to\nYour Cart");
+                                          listOfCartItems.add(ItemOfCart(
+                                            imageUrl: imageUrl,
+                                            name: title,
+                                            amountOfItem: cubit.amountOfItem,
+                                            price: cubit.total,
+                                          ));
+                                          }
+                                          // added new
                                         },
                                         child: Container(
                                           height: 50,
@@ -258,9 +257,15 @@ class ProductScreen extends StatelessWidget {
                                       ),
                                     ),
                                     IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(Icons.favorite,
-                                          color: Colors.redAccent),
+                                      onPressed: cubit.changeFavorit,
+                                      icon: cubit.isFavorite
+                                          ? const Icon(Icons.favorite_rounded,
+                                              size: 28, color: Colors.redAccent)
+                                          : const Icon(
+                                              Icons.favorite_border_rounded,
+                                              color: Colors.black38,
+                                              size: 28,
+                                            ),
                                     ),
                                   ],
                                 ),
@@ -291,5 +296,4 @@ List<String> sizeItem = [
   'S',
   'M',
   'L',
-  'XL',
 ];

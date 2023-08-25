@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../models/login_model.dart';
 import '../../models/sign_up_model.dart';
 import 'states.dart';
 

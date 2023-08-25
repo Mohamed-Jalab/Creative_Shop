@@ -4,11 +4,20 @@ import '../shared/component.dart';
 import '../shared/constant.dart';
 import 'check_out_screen.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
 
   @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+  int total = 0;
+  @override
   Widget build(BuildContext context) {
+    for (int i = 0; i < listOfCartItems.length; i++) {
+      total += listOfCartItems[i].price;
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
@@ -22,170 +31,171 @@ class CartScreen extends StatelessWidget {
         ],
       ),
       backgroundColor: greyColor3,
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        child: Stack(
-          alignment: Alignment.topCenter,
-          children: [
-            SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Column(
+      body: listOfCartItems.isEmpty
+          ? const Center(
+              child: Text('There is no any product to buy it.',
+                  style: TextStyle(fontSize: 20)))
+          : SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: Stack(
+                alignment: Alignment.topCenter,
                 children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0xFFD8D8D8),
-                          offset: Offset(0.0, .4),
-                          blurRadius: 10.0,
-                          blurStyle: BlurStyle.outer,
-                        ),
-                      ],
-                      color: whiteColor,
-                      borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(16),
-                        bottomLeft: Radius.circular(16),
-                      ),
-                    ),
+                  SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
                     child: Column(
                       children: [
-                        // const SizedBox(height: 25),
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //   children: [
-                        //     IconButton(
-                        //       icon: const Icon(Icons.arrow_back),
-                        //       onPressed: () {},
-                        //     ),
-                        //     const Text(
-                        //       'Your Cart',
-                        //       style: TextStyle(
-                        //         fontSize: 20,
-                        //         fontWeight: FontWeight.bold,
-                        //       ),
-                        //     ),
-                        //     IconButton(
-                        //       icon: const Icon(Icons.delete_outlined),
-                        //       onPressed: () {},
-                        //     ),
-                        //   ],
-                        // ),
-                        const SizedBox(height: 20),
-                        buildlistTile(
-                          context,
-                          imageUrl: 'asset/images/1.jpg',
-                          title: 'Product name',
-                          subTitle: '69.99',
-                        ),
-                        buildlistTile(
-                          context,
-                          imageUrl: 'asset/images/1.jpg',
-                          title: 'Product name',
-                          subTitle: '69.99',
-                        ),
-                        buildlistTile(
-                          context,
-                          imageUrl: 'asset/images/1.jpg',
-                          title: 'Product name',
-                          subTitle: '69.99',
-                        ),
-                        const SizedBox(height: 10),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        Container(
+                          decoration: const BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color(0xFFD8D8D8),
+                                offset: Offset(0.0, .4),
+                                blurRadius: 10.0,
+                                blurStyle: BlurStyle.outer,
+                              ),
+                            ],
+                            color: whiteColor,
+                            borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(16),
+                              bottomLeft: Radius.circular(16),
+                            ),
+                          ),
+                          child: Column(
                             children: [
-                              Text(
-                                'Goods:',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 17,
+                              const SizedBox(height: 20),
+                              for (int i = 0; i < listOfCartItems.length; i++)
+                                buildlistTile(context,
+                                    imageUrl: listOfCartItems[i].imageUrl,
+                                    title: listOfCartItems[i].name,
+                                    subTitle:
+                                        listOfCartItems[i].price.toString()),
+                              // buildlistTile(
+                              //   context,
+                              //   imageUrl: 'asset/images/1.jpg',
+                              //   title: 'Product name',
+                              //   subTitle: '69.99',
+                              // ),
+                              // buildlistTile(
+                              //   context,
+                              //   imageUrl: 'asset/images/1.jpg',
+                              //   title: 'Product name',
+                              //   subTitle: '69.99',
+                              // ),
+                              // buildlistTile(
+                              //   context,
+                              //   imageUrl: 'asset/images/1.jpg',
+                              //   title: 'Product name',
+                              //   subTitle: '69.99',
+                              // ),
+                              const SizedBox(height: 10),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text(
+                                      'Goods:',
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 17,
+                                      ),
+                                    ),
+                                    Text(
+                                      '\$$total',
+                                      style: const TextStyle(fontSize: 17),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              Text(
-                                '\$11,772.7',
-                                style: TextStyle(fontSize: 17),
+                              const SizedBox(height: 10),
+                              const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Delivery:',
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 17,
+                                      ),
+                                    ),
+                                    Text(
+                                      '\$0.00',
+                                      style: TextStyle(fontSize: 17),
+                                    ),
+                                  ],
+                                ),
                               ),
+                              const SizedBox(height: 10),
+                              distance(),
+                              const SizedBox(height: 10),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text(
+                                      'Toatal Price:',
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 17,
+                                      ),
+                                    ),
+                                    Text(
+                                      '\$$total',
+                                      style: const TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 30),
                             ],
                           ),
                         ),
-                        const SizedBox(height: 10),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Delivery:',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 17,
-                                ),
-                              ),
-                              Text(
-                                '\$0.00',
-                                style: TextStyle(fontSize: 17),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        distance(),
-                        const SizedBox(height: 10),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Toatal Price:',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17,
-                                ),
-                              ),
-                              Text(
-                                '\$11,772.7',
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 130),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 130),
+                  Positioned(
+                    bottom: 15,
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width - 20,
+                      child: buildBigButton(
+                        context,
+                        padding: const EdgeInsets.symmetric(vertical: 15),
+                        color: secondaryColor,
+                        child: const Text('Check Out',
+                            style: TextStyle(fontSize: 20)),
+                        onPressed: () {
+                          // setState(() {
+                          //   listOfCartItems = [];
+                          // });
+                          Navigator.of(context)
+                              .push(
+                                MaterialPageRoute(
+                                  builder: (context) => CheckOutScreen(
+                                    total: total,
+                                  ),
+                                ),
+                              )
+                              .then((value) => setState(() {}));
+                        },
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
-            Positioned(
-              bottom: 10,
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width - 20,
-                child: buildBigButton(
-                  context,
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  color: secondaryColor,
-                  child:
-                      const Text('Check Out', style: TextStyle(fontSize: 20)),
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const CheckOutScreen(),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

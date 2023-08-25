@@ -27,7 +27,7 @@ class SignUpScreen extends StatelessWidget {
           SignUpCubit cubit = BlocProvider.of(context);
           return Scaffold(
             body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
@@ -84,11 +84,11 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 15),
                     buildBigButton(context, onPressed: () {
+                      FocusManager.instance.primaryFocus?.unfocus();
                       if (cubit.passwordController.text !=
                           cubit.confirmPasswordController.text) {
                         message(context, "Uncorrect confirm password");
-                      }
-                      if (cubit.usernameController.text != '' &&
+                      } else if (cubit.usernameController.text != '' &&
                           cubit.emailController.text != '' &&
                           cubit.passwordController.text != '' &&
                           cubit.confirmPasswordController.text != '') {
@@ -97,6 +97,8 @@ class SignUpScreen extends StatelessWidget {
                             email: cubit.emailController.text,
                             password: cubit.passwordController.text);
                         cubit.signUp(userModel);
+                      } else {
+                        message(context, "Complete all fields");
                       }
                     },
                         height: 48,

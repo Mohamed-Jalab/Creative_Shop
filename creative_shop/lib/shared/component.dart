@@ -1,3 +1,4 @@
+import 'package:creative_shop/models/item_of_cart.dart';
 import 'package:creative_shop/screens/cate_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
@@ -67,18 +68,20 @@ Widget buildBigButton(
   double? height,
   required void Function() onPressed,
   BorderRadius? borderRadius,
+  double? elevation,
 }) {
   return SizedBox(
     width: MediaQuery.of(context).size.width,
     child: MaterialButton(
+      highlightColor: whiteColor.withOpacity(.2),
+      splashColor: whiteColor.withOpacity(.2),
+      elevation: elevation,
       padding: padding,
       height: height,
       textColor: whiteColor,
       color: color,
       shape: RoundedRectangleBorder(
-        borderRadius: borderRadius ?? BorderRadius.circular(8),
-        // side: const BorderSide(color: Color(0xffe50010)),
-      ),
+          borderRadius: borderRadius ?? BorderRadius.circular(8)),
       onPressed: onPressed,
       child: child,
     ),
@@ -215,30 +218,33 @@ Widget buildlistTile(
               ],
             ),
             const Spacer(),
-            Column(
+            const Column(
               children: [
-                IconButton(
-                  splashColor: Colors.black,
-                  color: greyColor2,
-                  iconSize: 16,
-                  splashRadius: 18,
-                  icon: const Icon(Icons.add),
-                  onPressed: () {},
-                ),
-                const Text(
-                  '1',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                // IconButton(
+                //   splashColor: Colors.black,
+                //   color: greyColor2,
+                //   iconSize: 16,
+                //   splashRadius: 18,
+                //   icon: const Icon(Icons.add),
+                //   onPressed: () {},
+                // ),
+                Padding(
+                  padding: EdgeInsets.only(right: 10),
+                  child: Text(
+                    '1',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-                IconButton(
-                  color: greyColor2,
-                  iconSize: 16,
-                  splashRadius: 18,
-                  style: IconButton.styleFrom(),
-                  icon: const Icon(Icons.remove),
-                  onPressed: () {},
-                ),
+                // IconButton(
+                //   color: greyColor2,
+                //   iconSize: 16,
+                //   splashRadius: 18,
+                //   style: IconButton.styleFrom(),
+                //   icon: const Icon(Icons.remove),
+                //   onPressed: () {},
+                // ),
               ],
             ),
           ],
@@ -280,16 +286,13 @@ void buildMessage(
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 15),
             Text(
               subTitle,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 14,
-                color: Colors.grey,
-              ),
+              style: const TextStyle(fontSize: 14, color: Colors.grey),
             ),
-            const SizedBox(height: 15),
+            const Expanded(child: SizedBox()),
             buildBigButton(context, child: const Text('Continue shopping'),
                 onPressed: () {
               Navigator.of(context).pop();
@@ -319,7 +322,7 @@ Widget productDetile({
           color: Colors.white,
           child: Image.asset(
             imageOfProduct,
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
           ),
         ),
         const SizedBox(
@@ -339,9 +342,7 @@ Widget productDetile({
                       fontSize: 16,
                     ),
                   ),
-                  const SizedBox(
-                    width: 5,
-                  ),
+                  const SizedBox(width: 5),
                   Text(
                     nameOfProduct,
                     style: const TextStyle(
@@ -351,11 +352,9 @@ Widget productDetile({
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               Text(
-                '$priseOfProduct',
+                priseOfProduct.toStringAsFixed(2),
               ),
             ],
           ),
@@ -373,11 +372,7 @@ Widget productDetile({
                 ),
               ),
             ),
-            // Expanded(
-            //   child:
-            // Container(
-            //   color: Colors.white,
-            //   child:
+
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Center(

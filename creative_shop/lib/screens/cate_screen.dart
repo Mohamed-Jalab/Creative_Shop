@@ -32,6 +32,7 @@ class CateScreen extends StatelessWidget {
     }
     return Scaffold(
       body: CustomScrollView(
+        physics: BouncingScrollPhysics(),
         slivers: [
           SliverFillRemaining(
             child: Stack(
@@ -105,9 +106,7 @@ class CateScreen extends StatelessWidget {
                 ),
                 Column(
                   children: const [
-                    SizedBox(
-                      height: 70,
-                    ),
+                    SizedBox(height: 70),
                     //! here is TextField
                     Padding(
                       padding: EdgeInsets.all(8.0),
@@ -162,9 +161,6 @@ class CateScreen extends StatelessWidget {
           ),
         ],
       ),
-      // bottomNavigationBar: TheAbsoluteBottomBar(
-      //   selectedInd: 0,
-      // ),
     );
   }
 }

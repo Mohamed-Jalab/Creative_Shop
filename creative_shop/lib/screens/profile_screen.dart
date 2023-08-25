@@ -4,10 +4,7 @@ import 'package:creative_shop/shared/constant.dart';
 import 'package:flutter/material.dart';
 
 import 'about_us_screen.dart';
-
-const backgroundColor = Color(0xffffffff);
-const primaryColor = Color(0xff232F3E);
-const secondaryColor = Color(0xffF69B32);
+import '../shared/constant.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -35,14 +32,14 @@ class ProfileScreen extends StatelessWidget {
                 style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
-                    color: backgroundColor)),
+                    color: whiteColor)),
             const SizedBox(
               height: 4,
             ),
             Text(publicModel.email,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontSize: 16, color: backgroundColor)),
+                style: const TextStyle(fontSize: 16, color: whiteColor)),
           ],
         ),
         // actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.edit))],
@@ -60,7 +57,7 @@ class ProfileScreen extends StatelessWidget {
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
-                          color: backgroundColor,
+                          color: whiteColor,
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey.shade200,
@@ -88,7 +85,7 @@ class ProfileScreen extends StatelessWidget {
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
-                          color: backgroundColor,
+                          color: whiteColor,
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey.shade200,
@@ -112,7 +109,7 @@ class ProfileScreen extends StatelessWidget {
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
-                          color: backgroundColor,
+                          color: whiteColor,
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey.shade200,
@@ -169,7 +166,7 @@ class ProfileScreen extends StatelessWidget {
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
-                          color: backgroundColor,
+                          color: whiteColor,
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey.shade200,
@@ -210,7 +207,7 @@ class ProfileScreen extends StatelessWidget {
                   context: context,
                   builder: (_) => AlertDialog(
                     content: SizedBox(
-                      height: 150,
+                      height: 220,
                       child: Column(
                         children: [
                           const Text(
@@ -229,6 +226,7 @@ class ProfileScreen extends StatelessWidget {
                           buildBigButton(context, child: const Text('Logout'),
                               onPressed: () {
                             Navigator.of(context).pop();
+                            sharedPreferences?.setBool('login', false);
                             Future.delayed(
                               const Duration(seconds: 1),
                               () => Navigator.of(context).pushReplacement(
@@ -240,7 +238,14 @@ class ProfileScreen extends StatelessWidget {
                             selectedInd = 1;
                           },
                               color: secondaryColor,
-                              borderRadius: BorderRadius.circular(45))
+                              borderRadius: BorderRadius.circular(45)),
+                          buildBigButton(context, child: const Text('Cancel'),
+                              onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                              elevation: 0,
+                              color: greyColor2,
+                              borderRadius: BorderRadius.circular(45)),
                         ],
                       ),
                     ),
@@ -253,7 +258,7 @@ class ProfileScreen extends StatelessWidget {
                   shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(8)))),
               child: const Text('Logout',
-                  style: TextStyle(fontSize: 24, color: backgroundColor)),
+                  style: TextStyle(fontSize: 24, color: whiteColor)),
             )
           ],
         ),
@@ -262,7 +267,7 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-Widget buildTab({IconData? icon, String? text, void Function()? onTap}) =>
+Widget buildTab({IconData? icon, String? text, void Function()? onTap }) =>
     GestureDetector(
       onTap: onTap,
       child: Container(
@@ -271,14 +276,8 @@ Widget buildTab({IconData? icon, String? text, void Function()? onTap}) =>
         width: double.infinity,
         child: Row(
           children: [
-            Icon(
-              icon,
-              color: primaryColor,
-              size: 25,
-            ),
-            const SizedBox(
-              width: 20,
-            ),
+            Icon(icon, color: primaryColor, size: 25),
+            const SizedBox(width: 20),
             Text(
               '$text',
               style: const TextStyle(
