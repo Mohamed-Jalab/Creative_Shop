@@ -1,4 +1,3 @@
-import 'package:creative_shop/models/item_of_cart.dart';
 import 'package:creative_shop/screens/cate_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
@@ -29,7 +28,7 @@ Widget buildTextField({
       focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide:
-              BorderSide(color: Colors.grey.withOpacity(.8), width: 1.8)),
+              BorderSide(color: secondaryColor.withOpacity(.8), width: 1.8)),
       // border: OutlineInputBorder(
       //   borderRadius: BorderRadius.circular(8),
       //   borderSide: BorderSide(color: Colors.grey.withOpacity(.8), width: 1.8)),
