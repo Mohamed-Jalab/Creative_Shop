@@ -138,6 +138,7 @@ class ItemCard extends StatelessWidget {
                       Text(
                         title,
                         overflow: TextOverflow.fade,
+                        softWrap: false,
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.w600),
                       ),
