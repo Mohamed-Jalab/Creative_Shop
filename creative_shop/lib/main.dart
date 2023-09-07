@@ -32,10 +32,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
           systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: primaryColor,
+            statusBarColor: Color(0xff1d2734),
             statusBarIconBrightness: Brightness.light,
-            systemNavigationBarColor: primaryColor,
-             systemNavigationBarDividerColor: primaryColor,
+            systemNavigationBarColor: Color(0xff1d2734),
+             systemNavigationBarDividerColor: Color(0xff1d2734),
             systemNavigationBarIconBrightness: Brightness.light,
             statusBarBrightness: Brightness.dark
           )
