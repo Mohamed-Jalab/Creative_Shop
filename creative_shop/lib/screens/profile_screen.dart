@@ -271,7 +271,7 @@ class ProfileScreen extends StatelessWidget {
 }
 
 Widget buildTab({IconData? icon, String? text, void Function()? onTap}) =>
-    GestureDetector(
+    InkWell(
       onTap: onTap,
       child: Container(
         height: 60,
