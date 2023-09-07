@@ -102,7 +102,15 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                             value: 1,
                             groupValue: 1,
                             onChanged: (value) {},
-                            title: const Text('I will pay cash')),
+                            title: Row(
+                              children: [
+                                Image.asset('asset/images/cash_icon.png',
+                                  width: 60,
+                                  height: 60,
+                                ),
+                                const Text('Cash'),
+                              ],
+                            )),
                         distance(),
                         const SizedBox(height: 10),
                         Padding(
