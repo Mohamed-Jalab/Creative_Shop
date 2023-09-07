@@ -486,46 +486,58 @@ Widget nameItem({Color? shadowColor, Color? nameColor, String? name}) =>
     );
 
 Widget grid(BuildContext context, CategoryModel model, List<ItemCard> list) {
-  return Column(
-    children: [
-      InkWell(
-          onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (_) => CateScreen(
-                      title: model.name,
-                      list: list,
-                    )));
-          },
-          child: Container(
+  return InkWell(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (_) => CateScreen(
+                  title: model.name,
+                  list: list,
+                )));
+      },
+      child: Column(
+        children: [
+          Container(
+            clipBehavior: Clip.antiAliasWithSaveLayer,
             width: 160,
             height: 160,
             decoration: BoxDecoration(
-                color: Colors.grey.shade100,
+                border: Border.all(width: 2, color: Colors.grey.shade100),
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: const [
                   BoxShadow(
-                    blurRadius: 1,
+                    blurRadius: 5,
                     color: Colors.black45,
                   ),
                 ]),
             child: Center(
-              child: Image.asset(
-                'asset/images/${model.image}',
-                width: 130,
-                height: 130,
-                fit: BoxFit.cover,
+              child: Container(
+                width: 159,
+                height: 159,
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                child: Image.asset(
+                  'asset/images/${model.image}',
+                  width: double.infinity,
+                  height: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          )),
-      const SizedBox(
-        height: 2,
-      ),
-      Text(
-        model.name,
-        style: const TextStyle(fontSize: 17),
-      ),
-    ],
-  );
+          ),
+          const SizedBox(
+            height: 4,
+          ),
+          Text(
+            model.name,
+            style: const TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey,
+                fontFamily: 'Poppins'),
+          ),
+        ],
+      ));
 }
 
 List<ItemCard> listOfCards(int index) {

@@ -88,9 +88,20 @@ class _CartScreenState extends State<CartScreen> {
       ),
       backgroundColor: greyColor3,
       body: listOfCartItems.isEmpty
-          ? const Center(
-              child: Text('There is no any product to buy it.',
-                  style: TextStyle(fontSize: 20)))
+          ?  Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset('asset/images/cart_screen_empty.png', width: 250, height: 250,),
+                  const Text('Your shopping cart is empty',
+                      style: TextStyle(fontSize: 20, fontFamily: 'Poppins')),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Text('Try shopping',
+                      style: TextStyle(fontSize: 20, fontFamily: 'Poppins')),
+                ],
+              ))
           : SizedBox(
               height: MediaQuery.of(context).size.height,
               child: Stack(
