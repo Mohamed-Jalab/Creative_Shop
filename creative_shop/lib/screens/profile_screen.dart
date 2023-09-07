@@ -1,12 +1,10 @@
 import 'package:creative_shop/screens/login_screen.dart';
 import 'package:creative_shop/shared/component.dart';
 import 'package:creative_shop/shared/constant.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import 'about_us_screen.dart';
-import '../shared/constant.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

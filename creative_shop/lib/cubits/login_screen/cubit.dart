@@ -22,8 +22,7 @@ class LoginCubit extends Cubit<LoginStates> {
   void login(SignUpModel model) async {
     emit(LoginLoadingState());
     try {
-      UserCredential user =
-          await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: model.email,
         password: model.password,
       );
@@ -41,7 +40,7 @@ class LoginCubit extends Cubit<LoginStates> {
           model.username = test.username;
         }
       }
-      
+
       emit(LoginSuccessState(model));
     } on FirebaseAuthException catch (erorr) {
       if (erorr.code == "user-not-found") {
