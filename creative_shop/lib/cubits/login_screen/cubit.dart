@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print, unused_local_variable
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -36,8 +34,6 @@ class LoginCubit extends Cubit<LoginStates> {
       for (var element in dataList) {
         String data = jsonEncode(element.data());
         var jsondata = jsonDecode(data);
-        // --------------------------------------------------
-        // print(data);
 
         SignUpModel test = SignUpModel.fromJson(jsondata);
         if (test.email == model.email) {
