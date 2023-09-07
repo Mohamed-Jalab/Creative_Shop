@@ -1,3 +1,5 @@
+import 'package:creative_shop/screens/favorite_screen.dart';
+import 'package:creative_shop/screens/home_screen.dart';
 import 'package:creative_shop/screens/widgets/order_tracking_page.dart';
 import 'package:flutter/material.dart';
 
@@ -161,7 +163,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               const Text(
-                                'Toatal Price:',
+                                'Total Price:',
                                 style: TextStyle(
                                   color: Colors.grey,
                                   fontWeight: FontWeight.bold,
@@ -203,7 +205,17 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                       context,
                       image: 'asset/images/check-all.png',
                       subTitle:
-                          "Your order has been successfully\npaid. Your product(s) are recived\nafter one hour.",
+                          "Your order has been successfully\npaid. Your product(s) are received\nin an hour.",
+                        function: () {
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pop();
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+                        },
+                      secondButtonText: 'Go to favorites',
+                      secondButtonFunction: () {
+                        Navigator.of(context).pop();
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const FavoriteScreen()));
+                      }
                     );
                   },
                 ),

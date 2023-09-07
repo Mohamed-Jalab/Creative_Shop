@@ -1,8 +1,10 @@
 import 'package:creative_shop/models/item_of_cart.dart';
+import 'package:creative_shop/screens/check_out_screen.dart';
 import 'package:creative_shop/shared/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../cubits/product_screen/cubit.dart';
 import '../shared/component.dart';
@@ -35,54 +37,68 @@ class ProductScreen extends StatelessWidget {
               body: Column(
                 children: [
                   Expanded(
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          height: double.infinity,
-                          child: IconButton(
-                            icon: const Icon(
-                              Icons.arrow_back_ios_new_rounded,
-                              color: Colors.grey,
-                            ),
-                            onPressed: () {},
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
+                    child: PageView(
+                        controller: cubit.scrollImagesController,
+                        onPageChanged: cubit.onImageChanged,
+                        physics: const BouncingScrollPhysics(),
+                        children: [
+                          Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(15),
                                 color: HexColor('232F3E'),
                               ),
                               height: double.infinity,
                               child: Image.asset(
                                 imageUrl,
-                                fit: BoxFit.fill,
+                                fit: BoxFit.cover,
                               ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: double.maxFinite,
-                          child: IconButton(
-                            icon: const Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              color: Colors.grey,
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: HexColor('232F3E'),
+                              ),
+                              height: double.infinity,
+                              child: Image.asset(
+                                imageUrl,
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                            onPressed: () {},
                           ),
-                        ),
-                      ],
+                        ]),
+                  ),
+                  const SizedBox(
+                    height: 2,
+                  ),
+                  Center(
+                    child: SmoothPageIndicator(
+                      controller: cubit.scrollImagesController,
+                      count: 2,
+                      effect: JumpingDotEffect(
+                        dotHeight: 20,
+                        dotWidth: 20,
+                        dotColor: secondaryColor.withOpacity(0.5),
+                        activeDotColor: secondaryColor,
+                      ),
                     ),
+                  ),
+                  const SizedBox(
+                    height: 10,
                   ),
                   Expanded(
                     child: Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20),
+                          topLeft: Radius.circular(15),
+                          topRight: Radius.circular(15),
                         ),
                         color: Colors.white,
                         boxShadow: [
@@ -95,7 +111,7 @@ class ProductScreen extends StatelessWidget {
                         ],
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Column(
                           children: [
                             const SizedBox(height: 5),
@@ -195,7 +211,7 @@ class ProductScreen extends StatelessWidget {
                                 width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20),
+                                  borderRadius: BorderRadius.circular(15),
                                   boxShadow: [
                                     BoxShadow(
                                       color: Colors.grey.withOpacity(0.2),
@@ -224,7 +240,16 @@ class ProductScreen extends StatelessWidget {
                                                 image:
                                                     'asset/images/check-all.png',
                                                 subTitle:
-                                                    "This product has added to\nYour Cart");
+                                                    "The product has been successfully added\nto your cart!",
+                                              function:() {
+                                              Navigator.of(context).pop();
+                                              Navigator.of(context).pop();
+                                            },
+                                              secondButtonText: 'Check out',
+                                              secondButtonFunction: () {
+                                              Navigator.push(context, MaterialPageRoute(builder: (context) => CheckOutScreen(total: cubit.total)));
+                                              }
+                                            );
                                             listOfCartItems.add(
                                               ItemOfCart(
                                                 imageUrl: imageUrl,
@@ -241,7 +266,7 @@ class ProductScreen extends StatelessWidget {
                                           height: 50,
                                           decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(20),
+                                                BorderRadius.circular(15),
                                             color: HexColor('F69B32'),
                                           ),
                                           child: const Center(

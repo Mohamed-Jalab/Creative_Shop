@@ -1,7 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 
 part 'state.dart';
 
@@ -12,8 +12,10 @@ class ProductCubit extends Cubit<ProductState> {
   bool isFavorite = false;
   int selectedItem = 0;
   int price = 69;
-  int amountOfItem = 0;
+  int amountOfItem = 1;
   int total = 0;
+  PageController scrollImagesController = PageController();
+
 
   void changeFavorit() {
     isFavorite = !isFavorite;
@@ -40,8 +42,12 @@ class ProductCubit extends Cubit<ProductState> {
   }
 
   void removeFromAmountOfItem() {
-    if (amountOfItem > 0) amountOfItem--;
+    if (amountOfItem > 1) amountOfItem--;
     total = price * amountOfItem;
     emit(RemoveFromItem());
+  }
+
+  void onImageChanged(int index) {
+    emit(ScrollImage());
   }
 }

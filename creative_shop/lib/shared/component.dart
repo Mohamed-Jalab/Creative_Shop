@@ -80,7 +80,7 @@ Widget buildBigButton(
       textColor: whiteColor,
       color: color,
       shape: RoundedRectangleBorder(
-          borderRadius: borderRadius ?? BorderRadius.circular(8)),
+          borderRadius: borderRadius ?? BorderRadius.circular(15)),
       onPressed: onPressed,
       child: child,
     ),
@@ -183,7 +183,7 @@ Widget buildlistTile(
   required String imageUrl,
   required String title,
   required String subTitle,
-  required int numOfProduct ,
+  required int numOfProduct,
 }) {
   return Column(
     children: [
@@ -229,10 +229,10 @@ Widget buildlistTile(
                 //   onPressed: () {},
                 // ),
                 Padding(
-                  padding: EdgeInsets.only(right: 10),
+                  padding: const EdgeInsets.only(right: 10),
                   child: Text(
                     '$numOfProduct',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -266,6 +266,9 @@ void buildMessage(
   BuildContext context, {
   required String image,
   required String subTitle,
+  required void Function() function,
+  required String secondButtonText,
+  required void Function() secondButtonFunction,
 }) {
   showDialog(
     context: context,
@@ -273,7 +276,7 @@ void buildMessage(
       shape: OutlineInputBorder(
           borderSide: BorderSide.none, borderRadius: BorderRadius.circular(15)),
       content: SizedBox(
-        height: 300,
+        height: 350,
         child: Column(
           children: [
             const SizedBox(height: 10),
@@ -293,10 +296,35 @@ void buildMessage(
               style: const TextStyle(fontSize: 14, color: Colors.grey),
             ),
             const Expanded(child: SizedBox()),
-            buildBigButton(context, child: const Text('Continue shopping'),
-                onPressed: () {
-              Navigator.of(context).pop();
-            }, color: secondaryColor, borderRadius: BorderRadius.circular(20)),
+            buildBigButton(context,
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                  child: Text(
+                    'Continue shopping',
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
+                  ),
+                ),
+                onPressed: function,
+                color: secondaryColor,
+                borderRadius: BorderRadius.circular(10)),
+            const SizedBox(
+              height: 10,
+            ),
+            buildBigButton(context,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
+                  child: Text(
+                    secondButtonText,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 20,
+                        color: Colors.grey),
+                  ),
+                ),
+                onPressed: secondButtonFunction,
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(10),
+                elevation: 0),
           ],
         ),
       ),
@@ -317,12 +345,16 @@ Widget productDetile({
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: Colors.white,
+          ),
           width: 75,
           height: 75,
-          color: Colors.white,
           child: Image.asset(
             imageOfProduct,
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
           ),
         ),
         const SizedBox(
