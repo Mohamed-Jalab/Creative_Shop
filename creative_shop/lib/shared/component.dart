@@ -310,21 +310,33 @@ void buildMessage(
             const SizedBox(
               height: 10,
             ),
-            buildBigButton(context,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10.0),
-                  child: Text(
-                    secondButtonText,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 20,
-                        color: Colors.grey),
+            Container(
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: TextButton(
+                onPressed: secondButtonFunction,
+                style: ButtonStyle(
+                  overlayColor: MaterialStateProperty.resolveWith<Color>(
+                    (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.pressed)) {
+                        return Colors.grey.withOpacity(0.1);
+                      }
+                      return Colors.transparent;
+                    },
                   ),
                 ),
-                onPressed: secondButtonFunction,
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(10),
-                elevation: 0),
+                child: Text(
+                  secondButtonText,
+                  style: const TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 20),
+                ),
+              ),
+            )
           ],
         ),
       ),
