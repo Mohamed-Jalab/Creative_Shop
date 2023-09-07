@@ -191,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             const CategoryScreen(),
                                       ));
                                     },
-                                    child: const Text('See All'),
+                                    child: const Text('See all'),
                                   ),
                                 ],
                               ),

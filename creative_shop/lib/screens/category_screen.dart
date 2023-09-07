@@ -22,23 +22,20 @@ class CategoryScreen extends StatelessWidget {
           style: TextStyle(fontSize: 23),
         ),
         centerTitle: true,
-        actions: const [
-          Padding(
-            padding: EdgeInsets.all(10.0),
-            child: Icon(Icons.search, size: 27),
-          )
+        actions: [
+          IconButton(onPressed: (){}, icon: const Icon(Icons.search, size: 27,))
         ],
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, mainAxisSpacing: 10, mainAxisExtent: 190),
+                  crossAxisCount: 2, mainAxisSpacing: 10, mainAxisExtent: 200),
               itemCount: model.length,
               itemBuilder: (BuildContext context, int index) {
                 return grid(context, model[index], listOfCards(index));
