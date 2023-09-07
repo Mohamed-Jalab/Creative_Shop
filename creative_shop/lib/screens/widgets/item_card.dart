@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 
 class ItemCard extends StatelessWidget {
@@ -79,10 +77,10 @@ class ItemCard extends StatelessWidget {
                                 : Colors.red),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: Text(
                               saleText,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 12,
                                   fontWeight: FontWeight.w700),
@@ -133,20 +131,20 @@ class ItemCard extends StatelessWidget {
                     children: [
                       Text(
                         category,
-                        style: TextStyle(color: Colors.black38),
+                        style: const TextStyle(color: Colors.black38),
                       ),
                       Text(
                         title,
                         overflow: TextOverflow.fade,
                         softWrap: false,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.w600),
                       ),
                       Row(
                         children: [
                           Text(
                             oldPrice,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 decoration: TextDecoration.lineThrough,
                                 color: Colors.black38),
                           ),
@@ -155,7 +153,7 @@ class ItemCard extends StatelessWidget {
                           ),
                           Text(
                             newPrice,
-                            style: TextStyle(color: Colors.green),
+                            style: const TextStyle(color: Colors.green),
                           ),
                         ],
                       ),

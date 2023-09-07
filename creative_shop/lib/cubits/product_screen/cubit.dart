@@ -2,7 +2,6 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:toast/toast.dart';
 
 part 'state.dart';
 
@@ -28,7 +27,7 @@ class ProductCubit extends Cubit<ProductState> {
   }
 
   int selectSizeOfItem = 0;
-  int cahngeSizeOfProduct(index) {
+  int changeSizeOfProduct(index) {
     selectSizeOfItem = index;
     emit(ChangeSizeOfItemState());
     return selectSizeOfItem;

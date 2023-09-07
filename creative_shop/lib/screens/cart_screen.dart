@@ -12,22 +12,78 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  int total = 0;
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     for (int i = 0; i < listOfCartItems.length; i++) {
       total += listOfCartItems[i].price;
     }
+  }
+
+  int total = 0;
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
         centerTitle: true,
         title: const Text('Your Cart'),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.delete_outline),
-            onPressed: () {},
-          ),
+          listOfCartItems.isEmpty
+              ? const SizedBox()
+              : IconButton(
+                  icon: const Icon(Icons.delete_outline),
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        content: SizedBox(
+                          height: 230,
+                          child: Column(
+                            children: [
+                              const Text('Warning!',
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Divider(),
+                              ),
+                              const Text(
+                                  'Are you sure to remove\nAll products?',
+                                  textAlign: TextAlign.center),
+                              const Spacer(),
+                              buildBigButton(
+                                context,
+                                child: const Text('Yes'),
+                                color: secondaryColor,
+                                onPressed: () {
+                                  if (Navigator.of(context).canPop()) {
+                                    Navigator.of(context).pop();
+                                  }
+                                  setState(() {
+                                    listOfCartItems.clear();
+                                  });
+                                },
+                              ),
+                              buildBigButton(
+                                color: greyColor2,
+                                context,
+                                child: const Text('Cancel'),
+                                onPressed: () {
+                                  if (Navigator.of(context).canPop()) {
+                                    Navigator.of(context).pop();
+                                  }
+                                },
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
         ],
       ),
       backgroundColor: greyColor3,
@@ -56,8 +112,8 @@ class _CartScreenState extends State<CartScreen> {
                             ],
                             color: whiteColor,
                             borderRadius: BorderRadius.only(
-                              bottomRight: Radius.circular(16),
-                              bottomLeft: Radius.circular(16),
+                              bottomRight: Radius.circular(15),
+                              bottomLeft: Radius.circular(15),
                             ),
                           ),
                           child: Column(
@@ -68,25 +124,8 @@ class _CartScreenState extends State<CartScreen> {
                                     imageUrl: listOfCartItems[i].imageUrl,
                                     title: listOfCartItems[i].name,
                                     subTitle:
-                                        listOfCartItems[i].price.toString()),
-                              // buildlistTile(
-                              //   context,
-                              //   imageUrl: 'asset/images/1.jpg',
-                              //   title: 'Product name',
-                              //   subTitle: '69.99',
-                              // ),
-                              // buildlistTile(
-                              //   context,
-                              //   imageUrl: 'asset/images/1.jpg',
-                              //   title: 'Product name',
-                              //   subTitle: '69.99',
-                              // ),
-                              // buildlistTile(
-                              //   context,
-                              //   imageUrl: 'asset/images/1.jpg',
-                              //   title: 'Product name',
-                              //   subTitle: '69.99',
-                              // ),
+                                        listOfCartItems[i].price.toString(), numOfProduct: listOfCartItems[i].amountOfItem),
+                                        
                               const SizedBox(height: 10),
                               Padding(
                                 padding: const EdgeInsets.symmetric(

@@ -183,6 +183,7 @@ Widget buildlistTile(
   required String imageUrl,
   required String title,
   required String subTitle,
+  required int numOfProduct ,
 }) {
   return Column(
     children: [
@@ -217,7 +218,7 @@ Widget buildlistTile(
               ],
             ),
             const Spacer(),
-            const Column(
+            Column(
               children: [
                 // IconButton(
                 //   splashColor: Colors.black,
@@ -230,7 +231,7 @@ Widget buildlistTile(
                 Padding(
                   padding: EdgeInsets.only(right: 10),
                   child: Text(
-                    '1',
+                    '$numOfProduct',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -307,7 +308,7 @@ Widget productDetile({
   required Function() removeOnPressed,
   required Function() addOnPressed,
   required int amountOfProduct,
-  required double priseOfProduct,
+  required double priceOfProduct,
   required String imageOfProduct,
   required String typeOfProduct,
   required String nameOfProduct,
@@ -353,7 +354,7 @@ Widget productDetile({
               ),
               const SizedBox(height: 10),
               Text(
-                priseOfProduct.toStringAsFixed(2),
+                priceOfProduct.toStringAsFixed(2),
               ),
             ],
           ),

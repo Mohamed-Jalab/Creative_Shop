@@ -110,7 +110,7 @@ class ProductScreen extends StatelessWidget {
                                   },
                                   amountOfProduct: cubit.amountOfItem,
                                   // !Price of item
-                                  priseOfProduct: cubit.amountOfItem * 69.99,
+                                  priceOfProduct: cubit.amountOfItem * 69.99,
                                   imageOfProduct: imageUrl,
                                   typeOfProduct: category,
                                   nameOfProduct: title,
@@ -147,9 +147,7 @@ class ProductScreen extends StatelessWidget {
                                       },
                                     ),
                                     separatorBuilder: (context, index) =>
-                                        const SizedBox(
-                                      width: 10,
-                                    ),
+                                        const SizedBox(width: 10),
                                     itemCount: colorItem.length,
                                   ),
                                 ),
@@ -180,7 +178,7 @@ class ProductScreen extends StatelessWidget {
                                               : Colors.transparent,
                                       inkwellWork: () {
                                         selectedItemForSize =
-                                            cubit.cahngeSizeOfProduct(index);
+                                            cubit.changeSizeOfProduct(index);
                                       },
                                       sizeOfProduct: sizeItem[index],
                                     ),
@@ -227,12 +225,15 @@ class ProductScreen extends StatelessWidget {
                                                     'asset/images/check-all.png',
                                                 subTitle:
                                                     "This product has added to\nYour Cart");
-                                          listOfCartItems.add(ItemOfCart(
-                                            imageUrl: imageUrl,
-                                            name: title,
-                                            amountOfItem: cubit.amountOfItem,
-                                            price: cubit.total,
-                                          ));
+                                            listOfCartItems.add(
+                                              ItemOfCart(
+                                                imageUrl: imageUrl,
+                                                name: title,
+                                                amountOfItem:
+                                                    cubit.amountOfItem,
+                                                price: cubit.total,
+                                              ),
+                                            );
                                           }
                                           // added new
                                         },
