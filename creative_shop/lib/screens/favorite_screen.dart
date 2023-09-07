@@ -38,7 +38,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
       };
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +47,20 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         backgroundColor: primaryColor,
       ),
       body: favoriteList.isEmpty
-          ? const Center(child: Text('There is no any favorite products'))
+          ? Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('asset/images/favorite_screen_empty.png', width: 250, height: 250,),
+              const Text('Nothing here... yet',
+                  style: TextStyle(fontSize: 20, fontFamily: 'Poppins')),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text('Try adding to your favorite',
+                  style: TextStyle(fontSize: 20, fontFamily: 'Poppins')),
+            ],
+          ))
           : SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: IntrinsicGridView.vertical(
