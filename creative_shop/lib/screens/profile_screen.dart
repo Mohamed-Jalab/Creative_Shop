@@ -2,9 +2,9 @@ import 'package:creative_shop/screens/login_screen.dart';
 import 'package:creative_shop/shared/component.dart';
 import 'package:creative_shop/shared/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import 'about_us_screen.dart';
-import '../shared/constant.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -224,9 +224,10 @@ class ProfileScreen extends StatelessWidget {
                           const Text("Are you sure to logout"),
                           const Expanded(child: SizedBox()),
                           buildBigButton(context, child: const Text('Logout'),
-                              onPressed: () {
+                              onPressed: () async {
                             Navigator.of(context).pop();
                             sharedPreferences?.setBool('login', false);
+                            GoogleSignIn().signOut();
                             Future.delayed(
                               const Duration(seconds: 1),
                               () => Navigator.of(context).pushReplacement(
@@ -267,8 +268,8 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-Widget buildTab({IconData? icon, String? text, void Function()? onTap }) =>
-    GestureDetector(
+Widget buildTab({IconData? icon, String? text, void Function()? onTap}) =>
+    InkWell(
       onTap: onTap,
       child: Container(
         height: 60,
