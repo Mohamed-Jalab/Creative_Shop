@@ -26,14 +26,14 @@ Widget buildTextField({
       hintText: text,
       hintStyle: const TextStyle(color: Colors.grey),
       focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(15),
           borderSide:
               BorderSide(color: secondaryColor.withOpacity(.8), width: 1.8)),
       // border: OutlineInputBorder(
       //   borderRadius: BorderRadius.circular(8),
       //   borderSide: BorderSide(color: Colors.grey.withOpacity(.8), width: 1.8)),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(15),
         borderSide: BorderSide(color: Colors.grey.withOpacity(.8), width: 1.8),
       ),
     ),

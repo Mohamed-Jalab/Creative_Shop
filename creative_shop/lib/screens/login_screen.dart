@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -107,7 +108,8 @@ class LoginScreen extends StatelessWidget {
                                   onPressed: () =>
                                       cubit.changeVisiblePassword(),
                                 ),
-                              )),
+                              ),
+                          ),
                         ],
                       ),
                     ),
@@ -196,7 +198,9 @@ class LoginScreen extends StatelessWidget {
                               );
                             }
                           } on Exception catch (e) {
-                            print(e);
+                            if (kDebugMode) {
+                              print(e);
+                            }
                           }
 
                           // SignUpModel(username: userRef.user!.displayName!, email: userRef.user!.email!, password: userRef.user!)
