@@ -29,6 +29,8 @@ Future<UserCredential> signInWithGoogle() async {
   return await FirebaseAuth.instance.signInWithCredential(credential);
 }
 
+FocusNode focusNode = FocusNode();
+
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
@@ -89,9 +91,11 @@ class LoginScreen extends StatelessWidget {
                             controller: cubit.emailController,
                             text: 'Email',
                             keyboardType: TextInputType.emailAddress,
+                            prefixIcon: Icons.email_outlined
                           ),
                           const SizedBox(height: 10),
                           buildTextField(
+                            prefixIcon: Icons.lock,
                               controller: cubit.passwordController,
                               obscure: !cubit.visible,
                               text: 'Password',

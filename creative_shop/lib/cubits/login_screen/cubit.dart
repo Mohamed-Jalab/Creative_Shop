@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,7 +37,9 @@ class LoginCubit extends Cubit<LoginStates> {
 
         SignUpModel test = SignUpModel.fromJson(jsondata);
         if (test.email == model.email) {
-          print(test.username);
+          if (kDebugMode) {
+            print(test.username);
+          }
           model.username = test.username;
         }
       }

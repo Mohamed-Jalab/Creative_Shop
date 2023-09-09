@@ -13,6 +13,7 @@ Widget buildTextField({
   String? Function(String?)? validator,
   Widget? suffix,
   bool obscure = false,
+  IconData? prefixIcon,
 }) {
   return TextFormField(
     controller: controller,
@@ -21,6 +22,11 @@ Widget buildTextField({
     keyboardType: keyboardType,
     cursorColor: secondaryColor.withOpacity(.8),
     decoration: InputDecoration(
+      prefixIcon: Icon(prefixIcon),
+      prefixIconColor: MaterialStateColor.resolveWith((states) =>
+      states.contains(MaterialState.focused)
+          ? secondaryColor
+          : Colors.grey),
       suffixIcon: suffix,
       contentPadding: const EdgeInsets.only(left: 20),
       hintText: text,
