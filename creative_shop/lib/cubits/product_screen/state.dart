@@ -16,3 +16,5 @@ class AddToItem extends ProductState {}
 class RemoveFromItem extends ProductState {}
 
 class ScrollImage extends ProductState {}
+
+class AddItemToCartState extends ProductState {}

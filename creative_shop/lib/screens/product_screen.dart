@@ -236,6 +236,7 @@ class ProductScreen extends StatelessWidget {
                                       child: InkWell(
                                         onTap: () {
                                           if (cubit.amountOfItem > 0) {
+                                            cubit.addItemToCart();
                                             buildMessage(context,
                                                 image:
                                                     'asset/images/check-all.png',

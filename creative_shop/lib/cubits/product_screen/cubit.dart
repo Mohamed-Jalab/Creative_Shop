@@ -37,17 +37,20 @@ class ProductCubit extends Cubit<ProductState> {
 
   void addToAmountOfItem() {
     amountOfItem++;
-    total = price * amountOfItem;
     emit(AddToItem());
   }
 
   void removeFromAmountOfItem() {
     if (amountOfItem > 1) amountOfItem--;
-    total = price * amountOfItem;
     emit(RemoveFromItem());
   }
 
   void onImageChanged(int index) {
     emit(ScrollImage());
+  }
+
+  void addItemToCart() {
+    total = price * amountOfItem;
+    emit(AddItemToCartState());
   }
 }
