@@ -14,7 +14,7 @@ class ProductCubit extends Cubit<ProductState> {
   int price = 69;
   int amountOfItem = 1;
   int total = 0;
-  PageController scrollImagesController = PageController();
+  PageController scrollImagesController = PageController(viewportFraction: 1.0375);
 
 
   void changeFavorit() {

@@ -24,9 +24,9 @@ Widget buildTextField({
     decoration: InputDecoration(
       prefixIcon: Icon(prefixIcon),
       prefixIconColor: MaterialStateColor.resolveWith((states) =>
-      states.contains(MaterialState.focused)
-          ? secondaryColor
-          : Colors.grey),
+          states.contains(MaterialState.focused)
+              ? secondaryColor
+              : Colors.grey),
       suffixIcon: suffix,
       contentPadding: const EdgeInsets.only(left: 20),
       hintText: text,
@@ -362,95 +362,149 @@ Widget productDetile({
     Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: Colors.white,
-          ),
-          width: 75,
-          height: 75,
-          child: Image.asset(
-            imageOfProduct,
-            fit: BoxFit.cover,
-          ),
-        ),
-        const SizedBox(
-          width: 20,
-        ),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                children: [
-                  Text(
-                    typeOfProduct,
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    nameOfProduct,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              Text(
-                '${priceOfProduct.toStringAsFixed(2)} SYP',
-              ),
-            ],
-          ),
-        ),
-        Column(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Expanded(
-              child: IconButton(
-                splashRadius: 12,
-                onPressed: addOnPressed,
-                icon: const Icon(
-                  Icons.add,
-                  size: 15,
-                  color: Colors.grey,
-                ),
+            Container(
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Colors.white,
+              ),
+              width: 75,
+              height: 75,
+              child: Image.asset(
+                imageOfProduct,
+                fit: BoxFit.cover,
               ),
             ),
-
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Center(
-                child: Text(
-                  '$amountOfProduct',
+            const SizedBox(
+              width: 20,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  typeOfProduct,
                   style: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
+                    color: Colors.grey,
+                    fontSize: 16,
                   ),
                 ),
-              ),
-            ),
-            // ),
-            // ),
-            Expanded(
-              child: IconButton(
-                splashRadius: 12,
-                onPressed: removeOnPressed,
-                icon: const Icon(
-                  Icons.remove,
-                  size: 15,
-                  color: Colors.grey,
+                Row(
+                  children: [
+                    Text(
+                      nameOfProduct,
+                      softWrap: false,
+                      overflow: TextOverflow.fade,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: .7,
+                      ),
+                    ),
+                    //const SizedBox(width: 5),
+                  ],
                 ),
-              ),
+                //const SizedBox(height: 10),
+                Row(
+                  //crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${priceOfProduct.toStringAsFixed(2)} SYP ',
+                      style: TextStyle(color: Colors.greenAccent[700]),
+                    ),
+                    Container(
+                      height: 10,
+                      child: const VerticalDivider(
+                        thickness: 1,
+                        color: Colors.black26,
+                        width: 8,
+                      ),
+                    ),
+                    TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                          foregroundColor: primaryColor,
+                          padding: EdgeInsets.only(left: 6, right: 6),
+                          minimumSize: Size.zero,
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          //backgroundColor: Colors.yellow,
+                          //textStyle: const TextStyle(fontSize: 20),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.star,
+                              color: Colors.yellow.shade600,
+                              size: 16,
+                            ),
+                            Text(' 4.98'),
+                            Text(
+                              '(2.4k)',
+                              style: TextStyle(color: Colors.black26),
+                            )
+                          ],
+                        ))
+                  ],
+                ),
+              ],
             ),
           ],
         ),
+        Padding(
+          padding: const EdgeInsets.only(right:8.0),
+          child: Column(
+            children: [
+              TextButton(
+                  onPressed: addOnPressed,
+                  //padding: EdgeInsets.zero,
+                  style: TextButton.styleFrom(
+                    foregroundColor: secondaryColor,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(1000)),
+                    padding: EdgeInsets.only(left: 6, right: 6),
+                    minimumSize: Size(24,24),
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  ),
+                  child: const Icon(
+                    Icons.add,
+                    size: 15,
+                    color: Colors.grey,
+                  )),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text(
+                    '$amountOfProduct',
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              TextButton(
+                  onPressed: removeOnPressed,
+                  style: TextButton.styleFrom(
+                    foregroundColor: secondaryColor,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(1000)),
+                    padding: EdgeInsets.only(left: 6, right: 6),
+                    minimumSize: Size(24,24),
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  ),
+                  child: const Icon(
+                    Icons.remove,
+                    size: 15,
+                    color: Colors.grey,
+                  )),
+            ],
+          ),
+        ),
       ],
+
     );
 
 Widget itemOfColorList({
