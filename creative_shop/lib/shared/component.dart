@@ -107,10 +107,10 @@ Widget buildTextButton(String text, {required void Function() onPressed}) {
   );
 }
 
-void message(BuildContext context, String msg, {bool longTime = true}) {
+void message(BuildContext context, String msg, {int longTime = 3}) {
   ToastContext toastContext = ToastContext();
   toastContext.init(context);
-  Toast.show(msg, duration: longTime ? Toast.lengthLong : Toast.lengthShort);
+  Toast.show(msg, duration: longTime);
 }
 
 // Widget pageViewScreen(

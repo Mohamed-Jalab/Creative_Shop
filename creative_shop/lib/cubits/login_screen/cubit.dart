@@ -52,7 +52,7 @@ class LoginCubit extends Cubit<LoginStates> {
         emit(LoginErorrState("Wrong password."));
       }
     } catch (e) {
-      emit(LoginErorrState("Unknown erorr."));
+      emit(LoginErorrState(e.toString()));
     }
 
     // if ( == model.email) {

@@ -23,7 +23,7 @@ class _SpalshScreenState extends State<SpalshScreen> {
       }),
     );
     Future.delayed(
-      const Duration(milliseconds: 3000),
+      const Duration(milliseconds: 2000),
       () => Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (_) {
           if (login) return const Home();

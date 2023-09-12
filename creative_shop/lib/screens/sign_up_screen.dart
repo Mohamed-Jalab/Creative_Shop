@@ -33,6 +33,7 @@ class SignUpScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(height: 20),
                     IconButton(
                         onPressed: () {
                           Navigator.of(context).pop();

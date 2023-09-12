@@ -41,7 +41,7 @@ class LoginScreen extends StatelessWidget {
       child: BlocConsumer<LoginCubit, LoginStates>(
         listener: (context, state) {
           if (state is LoginErorrState) {
-            message(context, state.error);
+            message(context, state.error, longTime: 7);
           } else if (state is LoginSuccessState) {
             sharedPreferences?.setBool('login', true);
             sharedPreferences?.setStringList('usermodel', [
