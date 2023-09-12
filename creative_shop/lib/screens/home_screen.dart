@@ -298,7 +298,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 // !here it is AppBar
                 const SizedBox(
-                  height: 100,
+                  height: 111,
                   width: double.maxFinite,
                   child: Card(
                     shape: RoundedRectangleBorder(

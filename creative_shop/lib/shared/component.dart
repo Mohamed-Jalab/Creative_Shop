@@ -404,7 +404,7 @@ Widget productDetile({
               ),
               const SizedBox(height: 10),
               Text(
-                priceOfProduct.toStringAsFixed(2),
+                '${priceOfProduct.toStringAsFixed(2)} SYP',
               ),
             ],
           ),

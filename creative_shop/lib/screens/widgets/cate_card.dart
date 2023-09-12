@@ -36,7 +36,6 @@ class CateCard extends StatelessWidget {
                   ),
                 ),
                 margin: EdgeInsets.zero,
-                color: Colors.red,
                 child: Image(
                   fit: BoxFit.cover,
                   image: image,

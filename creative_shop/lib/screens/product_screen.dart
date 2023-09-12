@@ -18,10 +18,12 @@ class ProductScreen extends StatelessWidget {
     required this.imageUrl,
     required this.category,
     required this.title,
+    this.price = 69.99,
   });
   final String imageUrl;
   final String category;
   final String title;
+  final double price;
 
   @override
   Widget build(BuildContext context) {
@@ -82,8 +84,8 @@ class ProductScreen extends StatelessWidget {
                       controller: cubit.scrollImagesController,
                       count: 2,
                       effect: JumpingDotEffect(
-                        dotHeight: 20,
-                        dotWidth: 20,
+                        dotHeight: 16,
+                        dotWidth: 16,
                         dotColor: secondaryColor.withOpacity(0.5),
                         activeDotColor: secondaryColor,
                       ),
@@ -126,7 +128,7 @@ class ProductScreen extends StatelessWidget {
                                   },
                                   amountOfProduct: cubit.amountOfItem,
                                   // !Price of item
-                                  priceOfProduct: cubit.amountOfItem * 69.99,
+                                  priceOfProduct: cubit.amountOfItem * price,
                                   imageOfProduct: imageUrl,
                                   typeOfProduct: category,
                                   nameOfProduct: title,
