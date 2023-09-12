@@ -54,10 +54,5 @@ class LoginCubit extends Cubit<LoginStates> {
     } catch (e) {
       emit(LoginErorrState(e.toString()));
     }
-
-    // if ( == model.email) {
-
-    //   print(element.data());
-    // }
   }
 }

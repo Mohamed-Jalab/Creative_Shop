@@ -242,15 +242,23 @@ class ProductScreen extends StatelessWidget {
                                                     'asset/images/check-all.png',
                                                 subTitle:
                                                     "The product has been successfully added\nto your cart!",
-                                              function:() {
-                                              Navigator.of(context).pop();
-                                              Navigator.of(context).pop();
-                                            },
-                                              secondButtonText: 'Check out',
-                                              secondButtonFunction: () {
-                                              Navigator.push(context, MaterialPageRoute(builder: (context) => CheckOutScreen(total: cubit.total)));
-                                              }
-                                            );
+                                                function: () {
+                                                  Navigator.of(context).pop();
+                                                  Navigator.of(context).pop();
+                                                },
+                                                secondButtonText: 'Check out',
+                                                secondButtonFunction: () {
+                                                  Navigator.of(context).pop();
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          CheckOutScreen(
+                                                              total:
+                                                                  cubit.total),
+                                                    ),
+                                                  );
+                                                });
                                             listOfCartItems.add(
                                               ItemOfCart(
                                                 imageUrl: imageUrl,
