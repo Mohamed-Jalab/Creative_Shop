@@ -35,53 +35,22 @@ class _CartScreenState extends State<CartScreen> {
               : IconButton(
                   icon: const Icon(Icons.delete_outline),
                   onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                        content: SizedBox(
-                          height: 230,
-                          child: Column(
-                            children: [
-                              const Text('Warning!',
-                                  style: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Divider(),
-                              ),
-                              const Text(
-                                  'Are you sure to remove\nAll products?',
-                                  textAlign: TextAlign.center),
-                              const Spacer(),
-                              buildBigButton(
-                                context,
-                                child: const Text('Yes'),
-                                color: secondaryColor,
-                                onPressed: () {
-                                  if (Navigator.of(context).canPop()) {
-                                    Navigator.of(context).pop();
-                                  }
-                                  setState(() {
-                                    listOfCartItems.clear();
-                                  });
-                                },
-                              ),
-                              buildBigButton(
-                                color: greyColor2,
-                                context,
-                                child: const Text('Cancel'),
-                                onPressed: () {
-                                  if (Navigator.of(context).canPop()) {
-                                    Navigator.of(context).pop();
-                                  }
-                                },
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
+                    buildMessage(
+                      context,
+                      image: 'asset/images/delete_cart_icon.png',
+                      title: 'Warning!',
+                      subTitle: 'Are you sure to remove\nall products from your cart?',
+                      firstButtonText: 'Yes',
+                      function: () {
+                          Navigator.of(context).pop();
+                        setState(() {
+                          listOfCartItems.clear();
+                        });
+                      },
+                      secondButtonText: 'Cancel',
+                      secondButtonFunction: () {
+                        Navigator.of(context).pop();
+                      },
                     );
                   },
                 ),
@@ -89,20 +58,24 @@ class _CartScreenState extends State<CartScreen> {
       ),
       backgroundColor: greyColor3,
       body: listOfCartItems.isEmpty
-          ?  Center(
+          ? Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset('asset/images/cart_screen_empty.png', width: 250, height: 250,),
-                  const Text('Your shopping cart is empty',
-                      style: TextStyle(fontSize: 20, fontFamily: 'Poppins')),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text('Try shopping',
-                      style: TextStyle(fontSize: 20, fontFamily: 'Poppins')),
-                ],
-              ))
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'asset/images/cart_screen_empty.png',
+                  width: 250,
+                  height: 250,
+                ),
+                const Text('Your shopping cart is empty',
+                    style: TextStyle(fontSize: 20, fontFamily: 'Poppins')),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text('Try shopping',
+                    style: TextStyle(fontSize: 20, fontFamily: 'Poppins')),
+              ],
+            ))
           : SizedBox(
               height: MediaQuery.of(context).size.height,
               child: Stack(
@@ -136,8 +109,9 @@ class _CartScreenState extends State<CartScreen> {
                                     imageUrl: listOfCartItems[i].imageUrl,
                                     title: listOfCartItems[i].name,
                                     subTitle:
-                                        listOfCartItems[i].price.toString(), numOfProduct: listOfCartItems[i].amountOfItem),
-                                        
+                                        listOfCartItems[i].price.toString(),
+                                    numOfProduct:
+                                        listOfCartItems[i].amountOfItem),
                               const SizedBox(height: 10),
                               Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -228,9 +202,6 @@ class _CartScreenState extends State<CartScreen> {
                         child: const Text('Check Out',
                             style: TextStyle(fontSize: 20)),
                         onPressed: () {
-                          // setState(() {
-                          //   listOfCartItems = [];
-                          // });
                           Navigator.of(context)
                               .push(
                                 MaterialPageRoute(
@@ -251,30 +222,30 @@ class _CartScreenState extends State<CartScreen> {
   }
 }
 
-              // ListTile(
-              //   leading: Image.asset(
-              //     'asset/images/1.jpg',
-              //     width: 80,
-              //     height: 110,
-              //     fit: BoxFit.fill,
-              //   ),
-              //   title: const Text('Product name'),
-              //   subtitle: const Text('\$5.99'),
-              //   trailing: Column(
-              //     children: [
-              //       IconButton(
-              //         iconSize: 14,
-              //         splashRadius: 18,
-              //         icon: const Icon(Icons.add),
-              //         onPressed: () {},
-              //       ),
-              //       const Text('1'),
-              //       IconButton(
-              //         iconSize: 14,
-              //         style: IconButton.styleFrom(),
-              //         icon: const Icon(Icons.remove),
-              //         onPressed: () {},
-              //       ),
-              //     ],
-              //   ),
-              // ),
+// ListTile(
+//   leading: Image.asset(
+//     'asset/images/1.jpg',
+//     width: 80,
+//     height: 110,
+//     fit: BoxFit.fill,
+//   ),
+//   title: const Text('Product name'),
+//   subtitle: const Text('\$5.99'),
+//   trailing: Column(
+//     children: [
+//       IconButton(
+//         iconSize: 14,
+//         splashRadius: 18,
+//         icon: const Icon(Icons.add),
+//         onPressed: () {},
+//       ),
+//       const Text('1'),
+//       IconButton(
+//         iconSize: 14,
+//         style: IconButton.styleFrom(),
+//         icon: const Icon(Icons.remove),
+//         onPressed: () {},
+//       ),
+//     ],
+//   ),
+// ),
