@@ -1,3 +1,4 @@
+import 'package:creative_shop/screens/contact_us_screen.dart';
 import 'package:creative_shop/screens/login_screen.dart';
 import 'package:creative_shop/shared/component.dart';
 import 'package:creative_shop/shared/constant.dart';
@@ -193,7 +194,15 @@ class ProfileScreen extends StatelessWidget {
                             width: double.infinity,
                             color: Colors.grey.shade200,
                           ),
-                          buildTab(icon: Icons.call, text: 'Contact Us'),
+                          buildTab(icon: Icons.call, text: 'Contact Us',
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ContactUsScreen(),
+                                  ),
+                                );
+                              }),
                         ],
                       ),
                     ),
@@ -205,7 +214,8 @@ class ProfileScreen extends StatelessWidget {
               onPressed: () {
                 showDialog(
                   context: context,
-                  builder: (_) => AlertDialog(
+                   builder: (_) =>
+                  AlertDialog(
                     content: SizedBox(
                       height: 220,
                       child: Column(
@@ -221,7 +231,7 @@ class ProfileScreen extends StatelessWidget {
                             padding: EdgeInsets.all(8.0),
                             child: Divider(),
                           ),
-                          const Text("Are you sure to logout"),
+                          const Text("Are you sure you want to logout"),
                           const Expanded(child: SizedBox()),
                           buildBigButton(context, child: const Text('Logout'),
                               onPressed: () async {
@@ -239,14 +249,18 @@ class ProfileScreen extends StatelessWidget {
                             selectedInd = 1;
                           },
                               color: secondaryColor,
-                              borderRadius: BorderRadius.circular(45)),
-                          buildBigButton(context, child: const Text('Cancel'),
+                              borderRadius: BorderRadius.circular(10)),
+                          buildBigButton(context, child: const Text('Cancel',
+                            style: TextStyle(
+
+                            ),
+                          ),
                               onPressed: () {
                             Navigator.of(context).pop();
                           },
                               elevation: 0,
                               color: greyColor2,
-                              borderRadius: BorderRadius.circular(45)),
+                              borderRadius: BorderRadius.circular(10)),
                         ],
                       ),
                     ),
