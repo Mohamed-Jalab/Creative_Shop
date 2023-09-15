@@ -194,7 +194,9 @@ class ProfileScreen extends StatelessWidget {
                             width: double.infinity,
                             color: Colors.grey.shade200,
                           ),
-                          buildTab(icon: Icons.call, text: 'Contact Us',
+                          buildTab(
+                              icon: Icons.call,
+                              text: 'Contact Us',
                               onTap: () {
                                 Navigator.push(
                                   context,
@@ -212,60 +214,29 @@ class ProfileScreen extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                showDialog(
-                  context: context,
-                   builder: (_) =>
-                  AlertDialog(
-                    content: SizedBox(
-                      height: 220,
-                      child: Column(
-                        children: [
-                          const Text(
-                            'Logout',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
+                buildMessage(context,
+                    image: 'asset/images/logout_icon.png',
+                    title: 'Logout',
+                    subTitle: 'Are you sure you want to logout?',
+                    firstButtonText: 'Logout',
+                    function: () async {
+                      Navigator.of(context).pop();
+                      sharedPreferences?.setBool('login', false);
+                      GoogleSignIn().signOut();
+                      Future.delayed(
+                        const Duration(seconds: 1),
+                        () => Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (_) => const LoginScreen(),
                           ),
-                          const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Divider(),
-                          ),
-                          const Text("Are you sure you want to logout"),
-                          const Expanded(child: SizedBox()),
-                          buildBigButton(context, child: const Text('Logout'),
-                              onPressed: () async {
-                            Navigator.of(context).pop();
-                            sharedPreferences?.setBool('login', false);
-                            GoogleSignIn().signOut();
-                            Future.delayed(
-                              const Duration(seconds: 1),
-                              () => Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                  builder: (_) => const LoginScreen(),
-                                ),
-                              ),
-                            );
-                            selectedInd = 1;
-                          },
-                              color: secondaryColor,
-                              borderRadius: BorderRadius.circular(10)),
-                          buildBigButton(context, child: const Text('Cancel',
-                            style: TextStyle(
-
-                            ),
-                          ),
-                              onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                              elevation: 0,
-                              color: greyColor2,
-                              borderRadius: BorderRadius.circular(10)),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
+                        ),
+                      );
+                      selectedInd = 1;
+                    },
+                    secondButtonText: 'Cancel',
+                    secondButtonFunction: () {
+                      Navigator.pop(context);
+                    });
               },
               style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 60),

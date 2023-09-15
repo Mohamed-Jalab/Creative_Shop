@@ -271,7 +271,9 @@ Widget distance() {
 void buildMessage(
   BuildContext context, {
   required String image,
+  String title = 'Success!',
   required String subTitle,
+  String firstButtonText = 'Continue shopping!',
   required void Function() function,
   required String secondButtonText,
   required void Function() secondButtonFunction,
@@ -288,9 +290,9 @@ void buildMessage(
             const SizedBox(height: 10),
             Image.asset(image, width: 100, height: 100),
             const SizedBox(height: 20),
-            const Text(
-              'Success!',
-              style: TextStyle(
+            Text(
+              title,
+              style: const TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
               ),
@@ -303,11 +305,11 @@ void buildMessage(
             ),
             const Expanded(child: SizedBox()),
             buildBigButton(context,
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
                   child: Text(
-                    'Continue shopping',
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
+                    firstButtonText,
+                    style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
                   ),
                 ),
                 onPressed: function,
@@ -418,9 +420,9 @@ Widget productDetile({
                       '${priceOfProduct.toStringAsFixed(2)} SYP ',
                       style: TextStyle(color: Colors.greenAccent[700]),
                     ),
-                    Container(
+                    const SizedBox(
                       height: 10,
-                      child: const VerticalDivider(
+                      child: VerticalDivider(
                         thickness: 1,
                         color: Colors.black26,
                         width: 8,
@@ -430,7 +432,7 @@ Widget productDetile({
                         onPressed: onScrollButton,
                         style: TextButton.styleFrom(
                           foregroundColor: primaryColor,
-                          padding: EdgeInsets.only(left: 6, right: 6),
+                          padding: const EdgeInsets.only(left: 6, right: 6),
                           minimumSize: Size.zero,
                           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                           //backgroundColor: Colors.yellow,
@@ -443,8 +445,8 @@ Widget productDetile({
                               color: Colors.yellow.shade600,
                               size: 16,
                             ),
-                            Text(' 4.98'),
-                            Text(
+                            const Text(' 4.98'),
+                            const Text(
                               '(2.4k)',
                               style: TextStyle(color: Colors.black26),
                             )
@@ -466,8 +468,8 @@ Widget productDetile({
                   style: TextButton.styleFrom(
                     foregroundColor: secondaryColor,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(1000)),
-                    padding: EdgeInsets.only(left: 6, right: 6),
-                    minimumSize: Size(24,24),
+                    padding: const EdgeInsets.only(left: 6, right: 6),
+                    minimumSize: const Size(24,24),
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   ),
                   child: const Icon(
@@ -492,8 +494,8 @@ Widget productDetile({
                   style: TextButton.styleFrom(
                     foregroundColor: secondaryColor,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(1000)),
-                    padding: EdgeInsets.only(left: 6, right: 6),
-                    minimumSize: Size(24,24),
+                    padding: const EdgeInsets.only(left: 6, right: 6),
+                    minimumSize: const Size(24,24),
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   ),
                   child: const Icon(
