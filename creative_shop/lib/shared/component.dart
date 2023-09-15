@@ -353,6 +353,7 @@ void buildMessage(
 Widget productDetile({
   required Function() removeOnPressed,
   required Function() addOnPressed,
+  required Function() onScrollButton,
   required int amountOfProduct,
   required double priceOfProduct,
   required String imageOfProduct,
@@ -426,7 +427,7 @@ Widget productDetile({
                       ),
                     ),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: onScrollButton,
                         style: TextButton.styleFrom(
                           foregroundColor: primaryColor,
                           padding: EdgeInsets.only(left: 6, right: 6),
