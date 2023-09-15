@@ -591,7 +591,7 @@ Widget nameItem({Color? shadowColor, Color? nameColor, String? name}) =>
     );
 
 Widget grid(BuildContext context, CategoryModel model, List<ItemCard> list) {
-  return InkWell(
+  return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
             builder: (_) => CateScreen(
