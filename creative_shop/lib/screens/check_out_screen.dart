@@ -128,7 +128,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                 ),
                               ),
                               Text(
-                                '\$${widget.total}',
+                                '${widget.total} SYP',
                                 style: const TextStyle(fontSize: 17),
                               ),
                             ],
@@ -148,7 +148,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                 ),
                               ),
                               Text(
-                                '\$0.00',
+                                '0.00 SYP',
                                 style: TextStyle(fontSize: 17),
                               ),
                             ],
@@ -171,7 +171,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                 ),
                               ),
                               Text(
-                                '\$${widget.total}',
+                                '${widget.total} SYP',
                                 style: const TextStyle(
                                   fontSize: 17,
                                   fontWeight: FontWeight.bold,

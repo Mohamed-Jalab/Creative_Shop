@@ -153,7 +153,7 @@ class _CartScreenState extends State<CartScreen> {
                                       ),
                                     ),
                                     Text(
-                                      '\$$total',
+                                      '$total SYP',
                                       style: const TextStyle(fontSize: 17),
                                     ),
                                   ],
@@ -174,7 +174,7 @@ class _CartScreenState extends State<CartScreen> {
                                       ),
                                     ),
                                     Text(
-                                      '\$0.00',
+                                      '0.00 SYP',
                                       style: TextStyle(fontSize: 17),
                                     ),
                                   ],
@@ -191,7 +191,7 @@ class _CartScreenState extends State<CartScreen> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     const Text(
-                                      'Toatal Price:',
+                                      'Total Price:',
                                       style: TextStyle(
                                         color: Colors.grey,
                                         fontWeight: FontWeight.bold,
@@ -199,7 +199,7 @@ class _CartScreenState extends State<CartScreen> {
                                       ),
                                     ),
                                     Text(
-                                      '\$$total',
+                                      '$total SYP',
                                       style: const TextStyle(
                                         fontSize: 17,
                                         fontWeight: FontWeight.bold,
