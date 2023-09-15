@@ -155,7 +155,7 @@ class ProductScreen extends StatelessWidget {
                                               typeOfProduct: category,
                                               nameOfProduct: title, onScrollButton: () {
                                               sc.animateTo(1000,
-                                                  duration: Duration(milliseconds: 300), curve: Curves.easeInCirc);
+                                                  duration: const Duration(milliseconds: 300), curve: Curves.easeInCirc);
                                             },
                                             ),
                                           ),
@@ -252,7 +252,7 @@ class ProductScreen extends StatelessWidget {
                                                   itemCount: sizeItem.length,
                                                 ),
                                               ),
-                                              ReviewsTaskiij(),
+                                              const ReviewsTaskiij(),
                                               const SizedBox(height: 65,),
 
                                             ],

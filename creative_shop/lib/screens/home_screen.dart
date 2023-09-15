@@ -348,7 +348,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     borderSide: BorderSide(
                                         color: primaryColor, width: 2.5),
                                     borderRadius: BorderRadius.all(
-                                      Radius.circular(1000),
+                                      Radius.circular(15),
                                     ),
                                   ),
                                   enabledBorder: OutlineInputBorder(
@@ -357,7 +357,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       width: 1.2,
                                     ),
                                     borderRadius: BorderRadius.all(
-                                      Radius.circular(1000),
+                                      Radius.circular(15),
                                     ),
                                   ),
                                 ),

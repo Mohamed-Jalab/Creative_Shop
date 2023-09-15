@@ -14,6 +14,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 8,
         backgroundColor: primaryColor,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
