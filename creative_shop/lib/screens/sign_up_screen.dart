@@ -105,7 +105,7 @@ class SignUpScreen extends StatelessWidget {
                         height: 48,
                         child: const Text('Sign Up',
                             style:
-                                TextStyle(fontSize: 16, fontFamily: "Poppins")),
+                            TextStyle(fontSize: 16, fontFamily: "Poppins")),
                         color: secondaryColor),
                     const SizedBox(height: 10),
                     if (state is SignUpLoadingState)

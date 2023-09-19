@@ -28,18 +28,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Creative Shop',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Color(0xff1d2734),
-            statusBarIconBrightness: Brightness.light,
-            systemNavigationBarColor: Color(0xff1d2734),
-             systemNavigationBarDividerColor: Color(0xff1d2734),
-            systemNavigationBarIconBrightness: Brightness.light,
-            statusBarBrightness: Brightness.dark
+          appBarTheme: const AppBarTheme(
+              elevation: 8,
+              systemOverlayStyle: SystemUiOverlayStyle(
+                  statusBarColor: Color(0xff1d2734),
+                  statusBarIconBrightness: Brightness.light,
+                  systemNavigationBarColor: Color(0xff1d2734),
+                  systemNavigationBarDividerColor: Color(0xff1d2734),
+                  systemNavigationBarIconBrightness: Brightness.light,
+                  statusBarBrightness: Brightness.dark
+              )
           )
-        )
       ),
       home: const SpalshScreen(),
     );

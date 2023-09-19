@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
 
 import '../models/categroy_model.dart';
+import '../screens/home_screen.dart';
 import '../screens/widgets/item_card.dart';
 import 'constant.dart';
 
@@ -24,9 +25,9 @@ Widget buildTextField({
     decoration: InputDecoration(
       prefixIcon: Icon(prefixIcon),
       prefixIconColor: MaterialStateColor.resolveWith((states) =>
-          states.contains(MaterialState.focused)
-              ? secondaryColor
-              : Colors.grey),
+      states.contains(MaterialState.focused)
+          ? secondaryColor
+          : Colors.grey),
       suffixIcon: suffix,
       contentPadding: const EdgeInsets.only(left: 20),
       hintText: text,
@@ -34,7 +35,7 @@ Widget buildTextField({
       focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
           borderSide:
-              BorderSide(color: secondaryColor.withOpacity(.8), width: 1.8)),
+          BorderSide(color: secondaryColor.withOpacity(.8), width: 1.8)),
       // border: OutlineInputBorder(
       //   borderRadius: BorderRadius.circular(8),
       //   borderSide: BorderSide(color: Colors.grey.withOpacity(.8), width: 1.8)),
@@ -66,15 +67,15 @@ Widget buildCheckbox(String text, {bool value = true}) {
 }
 
 Widget buildBigButton(
-  BuildContext context, {
-  required Widget child,
-  Color? color,
-  EdgeInsets? padding,
-  double? height,
-  required void Function() onPressed,
-  BorderRadius? borderRadius,
-  double? elevation,
-}) {
+    BuildContext context, {
+      required Widget child,
+      Color? color,
+      EdgeInsets? padding,
+      double? height,
+      required void Function() onPressed,
+      BorderRadius? borderRadius,
+      double? elevation,
+    }) {
   return SizedBox(
     width: MediaQuery.of(context).size.width,
     child: MaterialButton(
@@ -102,7 +103,7 @@ Widget buildTextButton(String text, {required void Function() onPressed}) {
     child: Text(
       text,
       style:
-          const TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Poppins'),
+      const TextStyle(fontWeight: FontWeight.w400, fontFamily: 'Poppins'),
     ),
   );
 }
@@ -131,11 +132,11 @@ void message(BuildContext context, String msg, {int longTime = 3}) {
 // }
 
 Widget pageWithGradient(
-  BuildContext context, {
-  required String image,
-  required String title,
-  required String subtitle,
-}) {
+    BuildContext context, {
+      required String image,
+      required String title,
+      required String subtitle,
+    }) {
   return Stack(
     alignment: Alignment.topCenter,
     children: [
@@ -185,12 +186,12 @@ Widget pageWithGradient(
 }
 
 Widget buildlistTile(
-  BuildContext context, {
-  required String imageUrl,
-  required String title,
-  required String subTitle,
-  required int numOfProduct,
-}) {
+    BuildContext context, {
+      required String imageUrl,
+      required String title,
+      required String subTitle,
+      required int numOfProduct,
+    }) {
   return Column(
     children: [
       Container(
@@ -199,11 +200,16 @@ Widget buildlistTile(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(
-              imageUrl,
-              width: 80,
-              height: 110,
-              fit: BoxFit.fill,
+            Card(
+              clipBehavior: Clip.hardEdge,
+              elevation:0.0,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+              child: Image.network(
+                imageUrl,
+                width: 80,
+                height: 110,
+                fit: BoxFit.cover,
+              ),
             ),
             const SizedBox(width: 20),
             Column(
@@ -269,15 +275,15 @@ Widget distance() {
 }
 
 void buildMessage(
-  BuildContext context, {
-  required String image,
-  String title = 'Success!',
-  required String subTitle,
-  String firstButtonText = 'Continue shopping!',
-  required void Function() function,
-  required String secondButtonText,
-  required void Function() secondButtonFunction,
-}) {
+    BuildContext context, {
+      required String image,
+      String title = 'Success!',
+      required String subTitle,
+      String firstButtonText = 'Continue shopping!',
+      required void Function() function,
+      required String secondButtonText,
+      required void Function() secondButtonFunction,
+    }) {
   showDialog(
     context: context,
     builder: (BuildContext context) => AlertDialog(
@@ -309,7 +315,8 @@ void buildMessage(
                   padding: const EdgeInsets.symmetric(vertical: 10.0),
                   child: Text(
                     firstButtonText,
-                    style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w600, fontSize: 20),
                   ),
                 ),
                 onPressed: function,
@@ -328,7 +335,7 @@ void buildMessage(
                 onPressed: secondButtonFunction,
                 style: ButtonStyle(
                   overlayColor: MaterialStateProperty.resolveWith<Color>(
-                    (Set<MaterialState> states) {
+                        (Set<MaterialState> states) {
                       if (states.contains(MaterialState.pressed)) {
                         return Colors.grey.withOpacity(0.1);
                       }
@@ -376,7 +383,7 @@ Widget productDetile({
               ),
               width: 75,
               height: 75,
-              child: Image.asset(
+              child: Image.network(
                 imageOfProduct,
                 fit: BoxFit.cover,
               ),
@@ -459,7 +466,7 @@ Widget productDetile({
           ],
         ),
         Padding(
-          padding: const EdgeInsets.only(right:8.0),
+          padding: const EdgeInsets.only(right: 8.0),
           child: Column(
             children: [
               TextButton(
@@ -467,9 +474,10 @@ Widget productDetile({
                   //padding: EdgeInsets.zero,
                   style: TextButton.styleFrom(
                     foregroundColor: secondaryColor,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(1000)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(1000)),
                     padding: const EdgeInsets.only(left: 6, right: 6),
-                    minimumSize: const Size(24,24),
+                    minimumSize: const Size(24, 24),
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   ),
                   child: const Icon(
@@ -493,9 +501,10 @@ Widget productDetile({
                   onPressed: removeOnPressed,
                   style: TextButton.styleFrom(
                     foregroundColor: secondaryColor,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(1000)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(1000)),
                     padding: const EdgeInsets.only(left: 6, right: 6),
-                    minimumSize: const Size(24,24),
+                    minimumSize: const Size(24, 24),
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   ),
                   child: const Icon(
@@ -507,7 +516,6 @@ Widget productDetile({
           ),
         ),
       ],
-
     );
 
 Widget itemOfColorList({
@@ -564,7 +572,10 @@ Widget itemOfSizeList({
       ),
     );
 
-Widget nameItem({Color? shadowColor, Color? nameColor, String? name}) =>
+Widget nameItem(
+    {required Color shadowColor,
+      required Color nameColor,
+      required String name}) =>
     Container(
       width: 220,
       height: 60,
@@ -573,7 +584,7 @@ Widget nameItem({Color? shadowColor, Color? nameColor, String? name}) =>
           borderRadius: BorderRadius.circular(45),
           boxShadow: [
             BoxShadow(
-                color: shadowColor!,
+                color: shadowColor,
                 spreadRadius: 2,
                 blurRadius: 8,
                 offset: const Offset(4, 4)),
@@ -585,66 +596,79 @@ Widget nameItem({Color? shadowColor, Color? nameColor, String? name}) =>
           ]),
       child: Center(
         child: Text(
-          '$name',
+          name,
           style: TextStyle(
-              fontSize: 25, color: nameColor!, fontStyle: FontStyle.italic),
+            fontSize: 25,
+            color: nameColor,
+            fontStyle: FontStyle.italic,
+          ),
         ),
       ),
     );
 
-Widget grid(BuildContext context, CategoryModel model, List<ItemCard> list) {
-  return GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (_) => CateScreen(
-                  title: model.name,
-                  list: list,
-                )));
-      },
-      child: Column(
-        children: [
-          Container(
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            width: 160,
-            height: 160,
-            decoration: BoxDecoration(
-                border: Border.all(width: 2, color: Colors.grey.shade100),
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: const [
-                  BoxShadow(
-                    blurRadius: 5,
-                    color: Colors.black45,
-                  ),
-                ]),
-            child: Center(
-              child: Container(
-                width: 159,
-                height: 159,
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(20)),
-                child: Image.asset(
-                  'asset/images/${model.image}',
-                  width: double.infinity,
-                  height: double.infinity,
-                  fit: BoxFit.cover,
+Widget grid(
+    BuildContext context,
+    CategoryModel model,
+    List<ItemCard> list,
+    int index,
+    ) {
+  return InkWell(
+    onTap: () {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => CateScreen(
+            index: index,
+            title: model.name,
+            list: list,
+          ),
+        ),
+      );
+    },
+    child: Column(
+      children: [
+        Container(
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          width: 160,
+          height: 160,
+          decoration: BoxDecoration(
+              border: Border.all(width: 2, color: Colors.grey.shade100),
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: const [
+                BoxShadow(
+                  blurRadius: 5,
+                  color: Colors.black45,
                 ),
+              ]),
+          child: Center(
+            child: Container(
+              width: 159,
+              height: 159,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              decoration:
+              BoxDecoration(borderRadius: BorderRadius.circular(20)),
+              child: Image.asset(
+                'asset/images/${model.image}',
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.cover,
               ),
             ),
           ),
-          const SizedBox(
-            height: 4,
-          ),
-          Text(
-            model.name,
-            style: const TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.bold,
-                color: Colors.grey,
-                fontFamily: 'Poppins'),
-          ),
-        ],
-      ));
+        ),
+        const SizedBox(
+          height: 4,
+        ),
+        Text(
+          model.name,
+          style: const TextStyle(
+              fontSize: 17,
+              fontWeight: FontWeight.bold,
+              color: Colors.grey,
+              fontFamily: 'Poppins'),
+        ),
+      ],
+    ),
+  );
 }
 
 List<ItemCard> listOfCards(int index) {
@@ -666,3 +690,5 @@ List<ItemCard> listOfCards(int index) {
     return raizenCards;
   }
 }
+
+

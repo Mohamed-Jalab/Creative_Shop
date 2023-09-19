@@ -14,6 +14,20 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  late List<Widget> pageList = [];
+
+  @override
+  initState(){
+    super.initState();
+    pageList.add(HomeScreen());
+    pageList.add(FavoriteScreen());
+    pageList.add(CartScreen());
+    pageList.add(ProfileScreen());
+
+
+  }
+
   List<Widget> screens = [
     const HomeScreen(),
     const FavoriteScreen(),
@@ -43,6 +57,7 @@ class _HomeState extends State<Home> {
 
                 type: BottomNavigationBarType.fixed),
             child: BottomNavigationBar(
+
               currentIndex: selectedInd - 1,
               onTap: (value) {
                 setState(() {
@@ -75,27 +90,7 @@ class _HomeState extends State<Home> {
             ),
           ),
         )
-        // BottomAppBar(
-        //   elevation: 8,
-        //   color: Colors.white,
-        //   child: SizedBox(
-        //     height: 55,
-        //     child: Row(
-        //       crossAxisAlignment: CrossAxisAlignment.center,
-        //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-        //       children: List.generate(navIcons.length, (index) {
-        //         bool isThisTheTime = (index + 1 == selectedInd);
-        // NavBarIcon returnedOne = NavBarIcon(
-        //           onTap: navIcons[index].onTap,
-        //           title: navIcons[index].title,
-        //           icon: navIcons[index].icon,
-        //           isSelected: isThisTheTime,
-        //         );
-        //         return returnedOne;
-        //       }),
-        //     ),
-        //   ),
-        // ),
-        );
+    );
   }
 }
+// check

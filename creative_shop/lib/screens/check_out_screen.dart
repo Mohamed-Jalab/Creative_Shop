@@ -203,20 +203,19 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                       listOfCartItems = [];
                     });
                     buildMessage(
-                      context,
-                      image: 'asset/images/check-all.png',
-                      subTitle:
-                          "Your order has been successfully\npaid. Your product(s) are received\nin an hour.",
+                        context,
+                        image: 'asset/images/check-all.png',
+                        subTitle:
+                        "Your order has been successfully\npaid. Your product(s) are received\nin an hour.",
                         function: () {
-                        Navigator.of(context).pop();
-                        Navigator.of(context).pop();
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+                          Navigator.of(context).pop();
+                          Navigator.of(context).pop();
                         },
-                      secondButtonText: 'Go to favorites',
-                      secondButtonFunction: () {
-                        Navigator.of(context).pop();
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const FavoriteScreen()));
-                      }
+                        secondButtonText: 'Go to favorites',
+                        secondButtonFunction: () {
+                          Navigator.of(context).pop();
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const FavoriteScreen()));
+                        }
                     );
                   },
                 ),

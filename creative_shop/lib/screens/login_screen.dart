@@ -17,7 +17,7 @@ Future<UserCredential> signInWithGoogle() async {
 
   // Obtain the auth details from the request
   final GoogleSignInAuthentication? googleAuth =
-      await googleUser?.authentication;
+  await googleUser?.authentication;
 
   // Create a new credential
   final credential = GoogleAuthProvider.credential(
@@ -88,10 +88,10 @@ class LoginScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           buildTextField(
-                            controller: cubit.emailController,
-                            text: 'Email',
-                            keyboardType: TextInputType.emailAddress,
-                            prefixIcon: Icons.email_outlined
+                              controller: cubit.emailController,
+                              text: 'Email',
+                              keyboardType: TextInputType.emailAddress,
+                              prefixIcon: Icons.email_outlined
                           ),
                           const SizedBox(height: 10),
                           buildTextField(
@@ -132,7 +132,7 @@ class LoginScreen extends StatelessWidget {
                         height: 48,
                         child: const Text('Log In',
                             style:
-                                TextStyle(fontSize: 16, fontFamily: "Poppins")),
+                            TextStyle(fontSize: 16, fontFamily: "Poppins")),
                         color: secondaryColor),
                     const SizedBox(height: 10),
                     if (state is LoginLoadingState)
@@ -164,9 +164,9 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         Expanded(
                             child: Divider(
-                          color: Colors.grey.withOpacity(.4),
-                          thickness: 2,
-                        )),
+                              color: Colors.grey.withOpacity(.4),
+                              thickness: 2,
+                            )),
                         const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           child: Text('Or Continue with',

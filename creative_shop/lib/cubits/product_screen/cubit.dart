@@ -1,7 +1,10 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:creative_shop/shared/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../screens/widgets/item_card.dart';
 
 part 'state.dart';
 
@@ -14,11 +17,16 @@ class ProductCubit extends Cubit<ProductState> {
   int price = 69;
   int amountOfItem = 1;
   int total = 0;
-  PageController scrollImagesController = PageController(viewportFraction: 1.0375);
+  PageController scrollImagesController =
+  PageController(viewportFraction: 1.0375);
 
-
-  void changeFavorit() {
+  void changeFavorit(ItemCard item) {
     isFavorite = !isFavorite;
+    if (isFavorite) {
+      favoriteList.add(item);
+    } else {
+      favoriteList.remove(item);
+    }
     emit(ChangeFavoriteItemState());
   }
 

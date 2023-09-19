@@ -196,16 +196,12 @@ class ProfileScreen extends StatelessWidget {
                             color: Colors.grey.shade200,
                           ),
                           buildTab(
-                              icon: Icons.call,
-                              text: 'Contact Us',
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ContactUsScreen(),
-                                  ),
-                                );
-                              }),
+                            icon: Icons.call,
+                            text: 'Contact Us',
+                            onTap: () =>
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => ContactUsScreen())),
+                          ),
                         ],
                       ),
                     ),
@@ -226,17 +222,19 @@ class ProfileScreen extends StatelessWidget {
                       GoogleSignIn().signOut();
                       Future.delayed(
                         const Duration(seconds: 1),
-                        () => Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (_) => const LoginScreen(),
-                          ),
-                        ),
+                            () =>
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (_) => const LoginScreen(),
+                              ),
+                            ),
                       );
                       selectedInd = 1;
                     },
                     secondButtonText: 'Cancel',
-                    secondButtonFunction: () {
-                      Navigator.pop(context);
+                    secondButtonFunction: ()
+                    {
+                      Navigator.of(context).pop();
                     });
               },
               style: ElevatedButton.styleFrom(
@@ -288,3 +286,4 @@ Widget buildTab({IconData? icon, String? text, void Function()? onTap}) =>
         ),
       ),
     );
+//check

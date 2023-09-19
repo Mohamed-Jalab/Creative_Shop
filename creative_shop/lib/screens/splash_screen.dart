@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:creative_shop/screens/home.dart';
 import 'package:creative_shop/shared/constant.dart';
 import 'package:flutter/material.dart';
@@ -18,13 +20,13 @@ class _SpalshScreenState extends State<SpalshScreen> {
     super.initState();
     Future.delayed(
       const Duration(milliseconds: 1000),
-      () => setState(() {
+          () => setState(() {
         opacity = 1;
       }),
     );
     Future.delayed(
       const Duration(milliseconds: 2000),
-      () => Navigator.of(context).pushReplacement(
+          () => Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (_) {
           if (login) return const Home();
           return const OnboardingScreen();
@@ -32,8 +34,6 @@ class _SpalshScreenState extends State<SpalshScreen> {
       ),
     );
   }
-
-  
 
   @override
   Widget build(BuildContext context) {

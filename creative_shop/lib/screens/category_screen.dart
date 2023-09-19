@@ -39,7 +39,7 @@ class CategoryScreen extends StatelessWidget {
                   crossAxisCount: 2, mainAxisSpacing: 10, mainAxisExtent: 200),
               itemCount: model.length,
               itemBuilder: (BuildContext context, int index) {
-                return grid(context, model[index], listOfCards(index));
+                return grid(context, model[index], listOfCards(index),index);
               },
             ),
           ],
